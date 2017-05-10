@@ -1,0 +1,57 @@
+<project name="js.build" default="deploy" basedir=".">
+    <description>js.build for ANT</description>
+    <property name="src" location="WebContent/js"/>
+    <property name="build" location="build"/>
+    <property name="target" location="WebContent/js"/>
+    <property name="lib" location="lib"/>
+    <property name="charset" value="utf-8"/>
+
+    <target name="init">
+        <mkdir dir="${build}"/>
+    </target>
+    <property name="core.files" value="Desktop.js"/>
+
+    <target name="concat">
+        <concat destfile="${build}/all.js" encoding="${charset}" outputencoding="${charset}">
+            <filelist dir="${src}/core/destop/core"
+                      files="Module.js,ShortcutModel.js,StartMenu.js,TaskBar.js,Wallpaper.js,Desktop.js,App.js"/>
+            <filelist dir="${src}/core/destop"
+                      files="FormWriter.js,MenuItem.js,WallpaperModel.js,Settings.js,ShortcutModel.js"/>
+            <filelist dir="${src}/core" files="Printer.js,AdNumberField.js,CheckColumn.js"/>
+            <fileset dir="${src}/model" includes="**/**/*.js"/>
+            <fileset dir="${src}/admin" includes="**/*.js"/>
+            <fileset dir="${src}/cash" includes="**/*.js"/>
+            <fileset dir="${src}/customer" includes="**/*.js"/>
+            <fileset dir="${src}/employee" includes="**/*.js"/>
+            <fileset dir="${src}/power" includes="**/*.js"/>
+            <fileset dir="${src}/product" includes="**/*.js"/>
+            <fileset dir="${src}/purchase" includes="**/*.js"/>
+            <fileset dir="${src}/sale" includes="**/*.js"/>
+            <fileset dir="${src}/stock" includes="**/*.js"/>
+            <fileset dir="${src}/vendor" includes="**/*.js"/>
+            <fileset dir="${src}/rma" includes="**/*.js"/>
+            <filelist dir="${src}/core/destop" files="App.js"/>
+        </concat>
+    </target>
+
+    <target name="compress">
+        <java jar="${lib}/compiler.jar" fork="true">
+            <arg line="--js '${build}/all.js' --charset ${charset} --js_output_file '${target}/allclass.js' --charset ${charset}"/>
+        </java>
+
+    </target>
+
+    <target name="clean">
+        <delete dir="${build}"/>
+    </target>
+    <target name="deploy">
+        <echo message="begin auto deploy......"/>
+        <antcall target="clean"/>
+        <antcall target="init"/>
+        <antcall target="concat">
+        </antcall>
+        <antcall target="compress">
+        </antcall>
+        <antcall target="clean"/>
+    </target>
+</project>

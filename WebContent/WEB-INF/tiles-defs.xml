@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+<tiles-definitions> 
+<definition name="member-definition" path="/layout.jsp">  
+<put name="top" value="/mTop.do"/>  
+<put name="left" value="/mLeft.do"/>  
+<put name="main" value="/defaultMmain.do"/> 
+</definition>
+</tiles-definitions>

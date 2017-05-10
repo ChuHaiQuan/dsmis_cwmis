@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean name="DynaForm" type="org.apache.struts.action.DynaActionForm" />
+		<form-bean name="TEmployeeForm" type="com.poweronce.form.TEmployeeForm" />
+		<form-bean name="TBuyerForm" type="com.poweronce.form.TBuyerForm" />
+		<form-bean name="TProviderForm" type="com.poweronce.form.TProviderForm" />
+		<form-bean name="TOperationItemsForm" type="com.poweronce.form.TOperationItemsForm" />
+		<form-bean name="TPowerForm" type="com.poweronce.form.TPowerForm" />
+		<form-bean name="TPowerOperationForm" type="com.poweronce.form.TPowerOperationForm" />
+		<form-bean name="TProductForm" type="com.poweronce.form.TProductForm" />
+		<form-bean name="TProductTypeForm" type="com.poweronce.form.TProductTypeForm" />
+		<form-bean name="TSaleForm" type="com.poweronce.form.TSaleForm" />
+		<form-bean name="TSaleProductForm" type="com.poweronce.form.TSaleProductForm" />
+		<form-bean name="TStockForm" type="com.poweronce.form.TStockForm" />
+		<form-bean name="TStockProductForm" type="com.poweronce.form.TStockProductForm" />
+		<form-bean name="TStockAndProductForm" type="com.poweronce.form.TStockAndProductForm" />
+		<form-bean name="TSettingForm" type="com.poweronce.form.TSettingForm" />
+		<form-bean name="TPurchaseForm" type="com.poweronce.form.TPurchaseForm" />
+		<form-bean name="TPurchaseProductForm" type="com.poweronce.form.TPurchaseProductForm" />
+		<form-bean name="TInvoiceForm" type="com.poweronce.form.TInvoiceForm" />
+		<form-bean name="TProductVendorForm" type="com.poweronce.form.TProduct_vendorForm" />
+	</form-beans>
+	<action-mappings>
+		<action path="/ajax" type="com.poweronce.action.AjaxAction" name="DynaForm" parameter="action" validate="true"
+			scope="request">
+			<forward redirect="false" name="list" path="/ajax.jsp" />
+		</action>
+		<action path="/login" type="com.poweronce.action.LoginAction" name="TEmployeeForm" input="/index.jsp"
+			parameter="action" validate="true" scope="request">
+			<forward redirect="false" name="check" path="/back/sale_discount_confirm.jsp" />
+			<forward redirect="false" name="success" path="/back/system/system.jsp" />
+			<forward redirect="false" name="main" path="/main.jsp" />
+			<forward redirect="false" name="false" path="/index.jsp" />
+			<forward redirect="false" name="logout" path="/index.jsp" />
+		</action>
+		<action path="/buyer" type="com.poweronce.action.TBuyerAction" name="TBuyerForm" input="/back/buyer_info.jsp"
+			parameter="action" validate="true" scope="request">
+			<forward redirect="false" name="get" path="/back/buyer_info.jsp" />
+			<forward redirect="false" name="save" path="/back/buyer_info.jsp" />
+			<forward redirect="false" name="list" path="/back/buyer_list.jsp" />
+			<forward redirect="false" name="info" path="/back/info.jsp" />
+		</action>
+		<action path="/provider" type="com.poweronce.action.TProviderAction" name="TProviderForm" input="/back/provider_info.jsp"
+			parameter="action" validate="true" scope="request">
+			<forward redirect="false" name="get" path="/back/provider_info.jsp" />
+			<forward redirect="false" name="view" path="/back/provider_info3.jsp" />
+			<forward redirect="false" name="save" path="/back/provider_info.jsp" />
+			<forward redirect="false" name="list" path="/back/provider_list.jsp" />
+			<forward redirect="false" name="info" path="/back/info.jsp" />
+		</action>
+		<action path="/employee" type="com.poweronce.action.TEmployeeAction" name="TEmployeeForm" input="/back/employee_info.jsp"
+			parameter="action" validate="true" scope="request">
+			<forward redirect="false" name="get" path="/back/employee_info.jsp" />
+			<forward redirect="false" name="change_password" path="/back/change_password.jsp" />
+			<forward redirect="false" name="save" path="/back/employee_info.jsp" />
+			<forward redirect="false" name="list" path="/back/employee_list.jsp" />
+			<forward redirect="false" name="info" path="/back/info.jsp" />
+		</action>
+		<action path="/operation_items" type="com.poweronce.action.TOperationItemsAction" name="TOperationItemsForm"
+			input="/back/operation_items_info.jsp" parameter="action" validate="true" scope="request">
+			<forward redirect="false" name="get" path="/back/operation_items_info.jsp" />
+			<forward redirect="false" name="save" path="/back/operation_items_info.jsp" />
+			<forward redirect="false" name="list" path="/back/operation_items_list.jsp" />
+			<forward redirect="false" name="info" path="/back/info.jsp" />
+		</action>
+		<action path="/power" type="com.poweronce.action.TPowerAction" name="TPowerForm" input="/back/power_info.jsp"
+			parameter="action" validate="true" scope="request">
+			<forward redirect="false" name="get" path="/back/power_info.jsp" />
+			<forward redirect="false" name="save" path="/back/power_info.jsp" />
+			<forward redirect="false" name="list" path="/back/power_list.jsp" />
+			<forward redirect="false" name="info" path="/back/info.jsp" />
+		</action>
+		<action path="/power_opration" type="com.poweronce.action.TPowerOperationAction" name="TPowerOperationForm"
+			input="/back/power_opration_info.jsp" parameter="action" validate="true" scope="request">
+			<forward redirect="false" name="get" path="/back/power_opration_info.jsp" />
+			<forward redirect="false" name="save" path="/back/power_opration_info.jsp" />
+			<forward redirect="false" name="list" path="/back/power_opration_list.jsp" />
+			<forward redirect="false" name="info" path="/back/info.jsp" />
+		</action>
+
+		<action path="/product" type="com.poweronce.action.TProductAction" name="TProductForm" input="/back/product_info.jsp"
+			parameter="action" validate="true" scope="request">
+			<forward redirect="false" name="get" path="/back/product_info.jsp" />
+			<forward redirect="false" name="save" path="/back/product_info.jsp" />
+			<forward redirect="false" name="select_product_type" path="/back/product_info_select_type.jsp" />
+			<forward redirect="false" name="save2" path="/back/product_info2.jsp" />
+			<forward redirect="false" name="save2succ" path="/back/stock.jsp" />
+			<forward redirect="false" name="list" path="/back/product_list.jsp" />
+			<forward redirect="false" name="query" path="/back/product_query.jsp" />
+			<forward redirect="false" name="info" path="/back/info.jsp" />
+		</action>
+		<action path="/productVendor" type="com.poweronce.action.TProductVendorAction" name="TProductVendorForm" input="/back/product_info.jsp"
+			parameter="action" validate="true" scope="request">
+		</action>
+		<action path="/product_type" type="com.poweronce.action.TProductTypeAction" name="TProductTypeForm" input="/back/product_type_info.jsp"
+			parameter="action" validate="true" scope="request">
+			<forward redirect="false" name="get" path="/back/product_type_info.jsp" />
+			<forward redirect="false" name="save" path="/back/product_type_info.jsp" />
+			<forward redirect="false" name="list" path="/back/product_type_list.jsp" />
+			<forward redirect="false" name="info" path="/back/info.jsp" />
+		</action>
+		<action path="/sale" type="com.poweronce.action.TSaleAction" name="TSaleForm" input="/back/sale.jsp" parameter="action"
+			validate="true" scope="request">
+			<forward redirect="false" name="get" path="/back/sale_info.jsp" />
+			<forward redirect="false" name="sale" path="/back/sale.jsp" />
+			<forward redirect="false" name="rma" path="/back/sale_rma.jsp" />
+			<forward redirect="false" name="rma_verify" path="/back/sale_rma_verify.jsp" />
+			<forward redirect="false" name="rma_print" path="/back/sale_rma_print.jsp" />
+			<forward redirect="false" name="print_credit_account" path="/back/sale_credit_account_print.jsp" />
+			<forward redirect="false" name="print_cash" path="/back/sale_cash_print.jsp" />
+			<forward redirect="false" name="credit_account" path="/back/sale_credit_account.jsp" />
+			<forward redirect="false" name="print" path="/back/sale_print.jsp" />
+			<forward redirect="false" name="packing_print" path="/back/packing_print.jsp" />
+			<forward redirect="false" name="stat_today" path="/back/sale_stat_today.jsp" />
+			<forward redirect="false" name="stat_today_print" path="/back/sale_stat_today_print.jsp" />
+			<forward redirect="false" name="stat_month" path="/back/sale_stat_month.jsp" />
+			<forward redirect="false" name="stat_between" path="/back/sale_stat_between.jsp" />
+			<forward redirect="false" name="sale_top" path="/back/sale_top.jsp" />
+			<forward redirect="false" name="cash_list" path="/back/sale_cash_list.jsp" />
+			<forward redirect="false" name="cash_list_purchase" path="/back/sale_cash_list_purchase.jsp" />
+			<forward redirect="false" name="cash" path="/back/sale_cash.jsp" />
+			<forward redirect="false" name="cash_purchase" path="/back/purchase_cash.jsp" />
+			<forward redirect="false" name="list" path="/back/sale_list.jsp" />
+			<forward redirect="false" name="per_list" path="/back/sale_per_list.jsp" />
+			<forward redirect="false" name="list_print" path="/back/sale_list_print.jsp" />
+			<forward redirect="false" name="list_back_order" path="/back/sale_back_order_list.jsp" />
+			<forward redirect="false" name="info" path="/back/info.jsp" />
+		</action>
+		<action path="/sale_product" type="com.poweronce.action.TSaleProductAction" name="TSaleProductForm" input="/back/sale.jsp"
+			parameter="action" validate="true" scope="request">
+			<forward redirect="false" name="query_add" path="/back/sale.jsp" />
+			<forward redirect="false" name="add" path="/back/sale.jsp" />
+			<forward redirect="false" name="list" path="/back/sale_product_list.jsp" />
+			<forward redirect="false" name="info" path="/back/info.jsp" />
+		</action>
+		<action path="/stock" type="com.poweronce.action.TStockAction" name="TStockForm" input="/back/stock.jsp"
+			parameter="action" validate="true" scope="request">
+			<forward redirect="false" name="get" path="/back/stock.jsp" />
+			<forward redirect="false" name="save" path="/back/stock.jsp" />
+			<forward redirect="false" name="list" path="/back/stock_list.jsp" />
+			<forward redirect="false" name="add_stock_product_2" path="/back/add_stock_product_2.jsp" />
+			<forward redirect="false" name="info" path="/back/info.jsp" />
+		</action>
+		<action path="/stock_product" type="com.poweronce.action.TStockProductAction" name="TStockProductForm" input="/back/stock.jsp"
+			parameter="action" validate="true" scope="request">
+			<forward redirect="false" name="add" path="/back/stock.jsp" />
+			<forward redirect="false" name="list" path="/back/stock_product_list.jsp" />
+			<forward redirect="false" name="info" path="/back/info.jsp" />
+		</action>
+		<action path="/stock_and_product" type="com.poweronce.action.TStockAndProductAction" name="TStockAndProductForm"
+			input="/back/product_stock_price_his.jsp" parameter="action" validate="true" scope="request">
+			<forward redirect="false" name="query" path="/back/product_stock_price_his.jsp" />
+			<forward redirect="false" name="list" path="/back/product_stock_price_his.jsp" />
+			<forward redirect="false" name="info" path="/back/info.jsp" />
+		</action>
+		<action path="/purchase_order" type="com.poweronce.action.TPurchaseAction" name="TPurchaseForm" input="/back/purchase_order.jsp"
+			parameter="action" validate="true" scope="request">
+			<forward redirect="false" name="po_canbinet" path="/back/purchase_order_canbinet.jsp" />
+			<forward redirect="false" name="get" path="/back/purchase_order.jsp" />
+			<forward redirect="false" name="save" path="/back/purchase_order.jsp" />
+			<forward redirect="false" name="list" path="/back/purchase_list.jsp" />
+			<forward redirect="false" name="provider_po_list" path="/back/provider_po_list.jsp" />
+			<forward redirect="false" name="purchase_pdf_print" path="/back/purchase_pdf_print.jsp" />
+			<forward redirect="false" name="info" path="/back/info.jsp" />
+		</action>
+		<action path="/purchase_product" type="com.poweronce.action.TPurchaseProductAction" name="TPurchaseProductForm"
+			input="/back/purchase_order.jsp" parameter="action" validate="true" scope="request">
+			<forward redirect="false" name="add" path="/back/purchase_order.jsp" />
+			<forward redirect="false" name="list" path="/back/purchase_product_list.jsp" />
+			<forward redirect="false" name="info" path="/back/info.jsp" />
+		</action>
+		<action path="/setting" type="com.poweronce.action.TSettingAction" name="TSettingForm" input="/back/setting.jsp"
+			parameter="action" validate="true" scope="request">
+			<forward redirect="false" name="get" path="/back/setting.jsp" />
+			<forward redirect="false" name="save" path="/back/setting.jsp" />
+			<forward redirect="false" name="info" path="/back/info.jsp" />
+		</action>
+		<action path="/invoice" type="com.poweronce.action.TInvoiceAction" name="TInvoiceForm" input="/back/add_invoice.jsp"
+			parameter="action" validate="true" scope="request">
+			<forward redirect="false" name="info" path="/back/invoice_info.jsp" />
+			<forward redirect="false" name="listByProvider" path="/back/invoices_provider.jsp" />
+		</action>
+	</action-mappings>
+	<!-- <global-exception> <exception type="java.lang.Exception" key="action.errors.exception" path="/back/info.jsp"/> </global-exception> -->
+	<message-resources parameter="PoweronceMessageResources" null="false" />
+	<plug-in className="org.apache.struts.tiles.TilesPlugin">
+		<set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml" />
+		<set-property property="definitions-parser-validate" value="true" />
+	</plug-in>
+</struts-config>
+

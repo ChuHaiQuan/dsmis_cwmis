@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://www.getahead.ltd.uk/dwr/dwr20.dtd">
+<dwr>
+  <allow>
+	<convert converter="bean" match="*"/>
+	<convert converter="bean" match="com.poweronce.entity.*"/>
+	<convert converter="bean" match="com.poweronce.model.*"/>
+	<convert converter="bean" match="com.poweronce.form.*"/>
+	<create creator="new" javascript="service">
+		<param name="class" value="com.poweronce.service.Webservice"/>
+	</create>
+	<create creator="new" javascript="dwr">
+		<param name="class" value="com.poweronce.service.DWRService"/>
+	</create>
+	<create creator="new" javascript="ajax">
+		<param name="class" value="com.poweronce.service.AjaxService"/>
+	</create>
+  </allow>
+</dwr>
