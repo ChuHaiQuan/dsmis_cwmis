@@ -123,6 +123,12 @@
 	width: 66px;
 	height: 24px;
 }
+
+.gongsi-button {
+	background-image: url(../images/gongsi.png) !important;
+	width: 66px;
+	height: 24px;
+}
 .linshou-button {
 	background-image: url(../images/linshou.png) !important;
 	width: 66px;

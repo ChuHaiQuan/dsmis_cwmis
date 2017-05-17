@@ -33,7 +33,7 @@ public class TSaleForm extends BasePageForm {
     private String buyer_city;
     private String buyer_mobile;
     private String buyer_postCode;
-
+    private Integer buyer_type;
     private double tax;
     private double sub_total;
     private double discount;
@@ -79,7 +79,16 @@ public class TSaleForm extends BasePageForm {
     
     
 
-    public double getDiscountpercent() {
+
+	public Integer getBuyer_type() {
+		return buyer_type;
+	}
+
+	public void setBuyer_type(Integer buyer_type) {
+		this.buyer_type = buyer_type;
+	}
+
+	public double getDiscountpercent() {
 		return discountpercent;
 	}
 

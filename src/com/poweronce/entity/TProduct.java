@@ -344,7 +344,6 @@ public class TProduct implements Serializable {
         private String vendortName;
         private String provider_id;
         private float price_wholesale;
-
         private float price_company;
         
         

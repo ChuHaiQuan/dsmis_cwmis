@@ -33,7 +33,8 @@ public class TSale implements Serializable {
     private double discount;
 
     private double discountpercent;
-
+    
+    private Integer buyer_type;
     private int buyer_id;
     private String buyer_code;
     private String buyer_name;
@@ -67,9 +68,14 @@ public class TSale implements Serializable {
      */
     private double refund;
     
-    
-    
 
+	public Integer getBuyer_type() {
+		return buyer_type;
+	}
+
+	public void setBuyer_type(Integer buyer_type) {
+		this.buyer_type = buyer_type;
+	}
 
 	public double getDiscountpercent() {
 		return discountpercent;

@@ -58,7 +58,7 @@ Ext.define('WJM.sale.SaleForm', {
                 xtype: 'actioncolumn',
                 text: "使用批发价",
                 align: 'center',
-                width: 174,
+                width: 194,
                 items: [
                     {
                         width: 66, height: 24, iconCls: 'pifa-button', html: '<span>使用批发价</span>', tooltip: '使用批发价',
@@ -68,6 +68,7 @@ Ext.define('WJM.sale.SaleForm', {
                             if (!recod.get('old_wholesale')) {
                                 recod.set('old_wholesale', recod.get('price_wholesale'));
                                 recod.set('old_simgle', recod.get('price_simgle'));
+                                recod.set('old_price_company', recod.get('price_company'));
                             }
                             var messageBox = Ext.Msg.prompt('approver', '请输入优惠确认人code:', function (btn, text) {
                                 if (btn == 'ok') {
@@ -109,12 +110,60 @@ Ext.define('WJM.sale.SaleForm', {
                             if (!recod.get('old_wholesale')) {
                                 recod.set('old_wholesale', recod.get('price_wholesale'));
                                 recod.set('old_simgle', recod.get('price_simgle'));
+                                recod.set('old_price_company', recod.get('price_company'));
                             }
                             recod.set('agio_price', recod.get('old_simgle'));
                             recod.set('agio_price_old', recod.get('old_simgle'));
                             recod.set('agio',0);
                             this.getForm().findField('confirm_code').setValue("");
                             this.calculateTotal(null,recod);
+                        }, scope: this
+                    },
+                    {
+                        width: 66, height: 24, iconCls: 'pifa-button', html: '<span>使用公司价</span>', tooltip: '使用公司价',
+                        handler: function (grid, rowIndex, colIndex) {
+                        	
+                            var recod = grid.getStore().getAt(rowIndex);
+                            if(recod.get("price_company")){
+                            	if (!recod.get('old_price_company')) {
+                            		recod.set('old_wholesale', recod.get('price_wholesale'));
+                            		recod.set('old_simgle', recod.get('price_simgle'));
+                            		recod.set('old_price_company', recod.get('price_company'));
+                            	}
+                            	var messageBox = Ext.Msg.prompt('approver', '请输入优惠确认人code:', function (btn, text) {
+                            		if (btn == 'ok') {
+                            			var proxy = new Ext.data.proxy.Ajax({
+                            				model: 'WJM.model.TEmployee', url: 'sale.do?action=checkApprover',
+                            				
+                            				reader: new Ext.data.reader.Json({
+                            					type: 'json', messageProperty: 'msg'
+                            				}),
+                            				
+                            				extraParams: {
+                            					confirm_code: text
+                            				},
+                            				
+                            				writer: Ext.create('WJM.FormWriter')
+                            			});
+                            			proxy.read(new Ext.data.Operation({}), function (records, operation) {
+                            				if (records.success) {
+                            					recod.set('agio_price', recod.get('old_price_company'));
+                            					recod.set('agio_price_old', recod.get('old_price_company'));
+                            					this.getForm().findField('confirm_code').setValue(text);
+                            				} else {
+                            					Ext.Msg.alert('提示', records.error);
+                            				}
+                            				this.calculateTotal(null,recod);
+                            			}, me);
+                            		}
+                            	});
+                            	// 将弹出框hack 为 密码弹框
+                            	Ext.dom.Element.get(messageBox.down('textfield').getInputId()).dom.type = 'password';
+                            	//this.calculateTotal();
+                            	
+                            }else{
+                            	Ext.Msg.alert('提示',"请先设置公司价！");
+                            }
                         }, scope: this
                     }
                 ]
@@ -231,6 +280,9 @@ Ext.define('WJM.sale.SaleForm', {
                     },
                     {
                         name: 'buyer_code', allowBlank: false, xtype: 'hidden'
+                    },
+                    {
+                        name: 'buyer_type', allowBlank: false, xtype: 'hidden'
                     }
                 ]
                 },
@@ -391,6 +443,9 @@ Ext.define('WJM.sale.SaleForm', {
                     },
                     {
                         xtype: 'button', iconCls: 'add', text: '使用零售价', scope: this, handler: this.onUseExpensive
+                    },
+                    {
+                        xtype: 'button', iconCls: 'add', text: '使用公司价格', scope: this, handler: this.onUseCompany
                     }
                 ]
                 }
@@ -439,6 +494,7 @@ Ext.define('WJM.sale.SaleForm', {
         this.getForm().findField('buyer_code').setValue(customer.get('code'));
         this.getForm().findField('buyer_id').setValue(customer.getId());
         this.getForm().findField('payment').setValue('Credit Account');
+        this.getForm().findField('buyer_type').setValue(customer.get('acc_type'));
     },
     /**
      * 保存
@@ -683,6 +739,7 @@ Ext.define('WJM.sale.SaleForm', {
      */
     onSaleProductLoad: function (records, opt, successful) {
     	var that=this;
+    	
         if (successful) {
             var products = [];
             Ext.Array.each(records, function (item) {
@@ -742,8 +799,28 @@ Ext.define('WJM.sale.SaleForm', {
             if (data) {
                 data.set("num", data.get("num") + 1);
             } else {
+            	debugger;
                 item.set("num", null);
                 item.set('agio', 0);
+                var accType = me.getForm().findField('buyer_type').getValue();
+                if(accType){
+                	switch (accType) {
+					case "0":
+						item.set('agio_price', item.get("price_simgle"));
+						break;
+					case "1":
+						item.set('agio_price', item.get("price_wholesale"));
+						break;
+					case "2":
+						if(item.get("price_company"))
+							item.set('agio_price', item.get("price_company"));
+						else
+							item.set('agio_price', item.get("price_wholesale"));
+						break;						
+					default:
+						break;
+					}
+                }
                 store.add(item);
             }
         });
@@ -831,6 +908,63 @@ Ext.define('WJM.sale.SaleForm', {
         
         
     },
+    
+    //使用公司价格
+    onUseCompany:function(){
+    	var selection = this.down('grid[title="订单商品"]').getView().getSelectionModel().getSelection();
+    	if(selection.length==0){
+    		Ext.MessageBox.show({
+				title : '提示', msg : '请至少选择一个商品', buttons : Ext.Msg.OK
+			});
+    		return false;
+    	};   
+    	
+    	
+        var messageBox = Ext.Msg.prompt('approver', '请输入优惠确认人code:', function (btn, text) {
+            if (btn == 'ok') {
+            	Ext.Array.each(selection,function(recod){
+                    if (!recod.get('old_price_company')) {
+                    	recod.set('old_wholesale', recod.get('price_wholesale'));
+                		recod.set('old_simgle', recod.get('price_simgle'));
+                		recod.set('old_price_company', recod.get('price_company'));
+                    }
+                    var proxy = new Ext.data.proxy.Ajax({
+                        model: 'WJM.model.TEmployee', url: 'sale.do?action=checkApprover',
+
+                        reader: new Ext.data.reader.Json({
+                            type: 'json', messageProperty: 'msg'
+                        }),
+
+                        extraParams: {
+                            confirm_code: text
+                        },
+
+                        writer: Ext.create('WJM.FormWriter')
+                    });
+                    proxy.read(new Ext.data.Operation({}), function (records, operation) {
+                        if (records.success) {
+                        	recod.set('agio_price', recod.get('old_price_company'));  
+                            recod.set('agio_price_old', recod.get('old_price_company'));	
+                        	 // recod.set('agio', (1-Ext.util.Format.number(recod.get('agio_price')/recod.get("price_simgle"),"0.000"))*100);
+                              
+
+                        } else {
+                            Ext.Msg.alert('提示', records.error);
+                        }
+                        that.calculateTotal(null,recod);
+                    });            
+                    that.getForm().findField('confirm_code').setValue(text);
+            	});
+            	
+
+            }
+        });
+        // 将弹出框hack 为 密码弹框
+        Ext.dom.Element.get(messageBox.down('textfield').getInputId()).dom.type = 'password';
+        
+        
+    },
+    
     //批量使用零售价
     onUseExpensive:function(){
     	var selection = this.down('grid[title="订单商品"]').getView().getSelectionModel().getSelection();

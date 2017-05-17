@@ -60,6 +60,8 @@ Ext.define('WJM.model.TSale', {
 	}, {
 		name : 'buyer_id'
 	}, {
+		name : 'buyer_type'
+	}, {
 		name : 'buyer_code'
 	}, {
 		name : 'buyer_name'
