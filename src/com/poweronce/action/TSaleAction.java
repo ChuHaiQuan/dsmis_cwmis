@@ -608,6 +608,7 @@ public class TSaleAction extends BaseDispatchAction {
             parameters.put("buyer_state", sale.getBuyer_state());
             parameters.put("buyer_mobile", sale.getBuyer_mobile());
             parameters.put("buyer_address", sale.getBuyer_address());
+            parameters.put("operator", sale.getOper_name());
             parameters.put("invoicename", sale.getType() == 0 ? "INVOICE" : "ESTIMATE");
             parameters
                     .put("subtotal", String.valueOf(new Double(ObjectFormat.formatCurrency(sale.getSub_total(), "##0.00")).doubleValue()));
