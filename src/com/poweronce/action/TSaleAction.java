@@ -29,6 +29,7 @@ import net.sf.json.JSONArray;
 import org.apache.bsf.util.Bean;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.poi.poifs.property.Parent;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -248,7 +249,7 @@ public class TSaleAction extends BaseDispatchAction {
             HttpSession session = request.getSession(false);
             List sale_product_list = (List) session.getAttribute("sale_product_list");
             TSale sale = (TSale) session.getAttribute("sale");
-
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             String path = request.getRealPath("");
             JasperCompileManager.compileReportToFile(path + "/report/packing.jrxml");
 
@@ -265,6 +266,8 @@ public class TSaleAction extends BaseDispatchAction {
             parameters.put("buyer_city", sale.getBuyer_city());
             parameters.put("buyer_mobile", sale.getBuyer_mobile());
             parameters.put("buyer_name", sale.getBuyer_name());
+            parameters.put("oper_time", format.format(format.parse(sale.getOper_time())));
+            parameters.put("oper_name", sale.getOper_name());
             parameters.put("buyer_postCode", sale.getBuyer_postCode());
             parameters.put("buyer_state", sale.getBuyer_state());
             String logo = "http://" + request.getLocalAddr() + ":" + request.getLocalPort() + request.getContextPath()
