@@ -41,7 +41,9 @@ public class TProductAction extends BaseDispatchAction {
         String lm = request.getParameter("code");
         String type = request.getParameter("product_type");
         String bol=request.getParameter("product_id_all");
+        String vendor = request.getParameter("vendor");
         String condition = " where 1=1";
+        String orderBy="";
         
         if (!StringUtils.isEmpty(pd)){
         	if(StringUtils.isNotBlank(bol) && bol.toLowerCase().equals("true")){
@@ -62,10 +64,12 @@ public class TProductAction extends BaseDispatchAction {
             condition += " and Code like '%" + lm.trim() + "%'";
         if (!StringUtils.isEmpty(type))
             condition += " and product_type = '" + type.trim() + "'";
+        
+       
         if (StringUtils.isNotEmpty(pd)) {
-            condition += " order by abs(length(TProduct.product_id)-length('" + pd.trim() + "')),product_id";
+        	orderBy= " order by abs(length(TProduct.product_id)-length('" + pd.trim() + "')),product_id";
         } else {
-            condition += " order by product_id,size";
+        	orderBy= " order by product_id,size";
         }
         String currpageStr = request.getParameter("currpage");
         String pagesizeStr = request.getParameter("pagesize");
@@ -79,10 +83,13 @@ public class TProductAction extends BaseDispatchAction {
             iPageSize = new Integer(pagesizeStr).intValue();
         }
 
-        long nCount = Webservice.getRowCount(TProduct.class, condition);
+        long nCount = Webservice.getRowCount(TProduct.class, condition+orderBy);
         long offset = iPageSize * (iCurrPage - 1);
+        if(StringUtils.isNotEmpty(vendor)){
+        	condition += " and TProduct_vendor.vendor_name like '%" + vendor.trim() + "%'";
+        }
         String sql = "select TProduct.price_company,TProduct.price_wholesale,TProduct.id,TProduct.product_id,TProduct.`Code`,TProduct.product_name,TProduct.Spec,TProduct.Unit,TProduct.UpLimit,TProduct.DownLimit,TProduct.Price_simgle,TProduct.Drawing,TProduct.HelpName,TProduct.MyMemo,TProduct.Drawing2,TProduct.Drawing3,TProduct.Drawing4,TProduct.Drawing5,TProduct.Drawing6,TProduct.Drawing7,TProduct.Drawing8,TProduct.Drawing9,TProduct.Sreserve1,TProduct.Sreserve2,TProduct.Sreserve3,TProduct.freserve1,TProduct.freserve2,TProduct.freserve3,TProduct.product_type,TProduct.num,TProduct.product_name_cn,TProduct.size,TProduct.weight,TProduct_vendor.vendor_id provider_id,TProduct_vendor.price Price_income,TProduct_vendor.vendor_name vendortName from TProduct left join TProduct_vendor on TProduct.id=TProduct_vendor.product_id and TProduct_vendor.useDefault=1 "
-                + condition + " limit " + iPageSize + " OFFSET " + offset;
+                + condition +orderBy+ " limit " + iPageSize + " OFFSET " + offset;
         List list = Webservice.listAllBySql(TProductVo.class, sql);
         response.getWriter().println(ExtUtil.genExtListString(list, nCount));
         return null;

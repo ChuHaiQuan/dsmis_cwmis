@@ -4,7 +4,7 @@
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="240"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
 	<import value="net.sf.jasperreports.engine.data.*"/>
@@ -38,6 +38,7 @@
 	<parameter name="delivery_method" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="rma_time" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="oper_time" class="java.lang.String"/>
+	<parameter name="operator" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[select * from TSaleproduct]]>
 	</queryString>
@@ -70,18 +71,18 @@
 		<band splitType="Stretch"/>
 	</title>
 	<pageHeader>
-		<band height="220" splitType="Stretch">
+		<band height="237" splitType="Stretch">
 			<rectangle>
-				<reportElement key="rectangle-7" style="Arial_Normal" x="8" y="114" width="267" height="69" uuid="bb0353d3-2468-4f4e-bb26-33d09a34a818"/>
+				<reportElement key="rectangle-7" style="Arial_Normal" x="8" y="126" width="267" height="69" uuid="bb0353d3-2468-4f4e-bb26-33d09a34a818"/>
 			</rectangle>
 			<rectangle>
-				<reportElement key="rectangle-6" style="Arial_Normal" x="312" y="113" width="267" height="70" uuid="cbebdf02-bd2a-471c-bc7a-42aa3b8acba9"/>
+				<reportElement key="rectangle-6" style="Arial_Normal" x="312" y="125" width="267" height="70" uuid="cbebdf02-bd2a-471c-bc7a-42aa3b8acba9"/>
 			</rectangle>
 			<line>
-				<reportElement key="line-24" style="Arial_Normal" x="0" y="106" width="586" height="1" uuid="d372807e-a9c0-4971-9fea-b4a444d30ebb"/>
+				<reportElement key="line-24" style="Arial_Normal" x="0" y="113" width="586" height="1" uuid="d372807e-a9c0-4971-9fea-b4a444d30ebb"/>
 			</line>
 			<staticText>
-				<reportElement key="staticText-30" style="Arial_Normal" x="10" y="114" width="50" height="14" uuid="53f43759-be28-4696-8ae6-122a53f38b11"/>
+				<reportElement key="staticText-30" style="Arial_Normal" x="10" y="126" width="50" height="14" uuid="53f43759-be28-4696-8ae6-122a53f38b11"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -92,7 +93,7 @@
 				<text><![CDATA[Bill To:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText-32" style="Arial_Normal" x="314" y="113" width="50" height="14" uuid="10d4ef20-fb97-494a-865f-e4ffaa1cebde"/>
+				<reportElement key="staticText-32" style="Arial_Normal" x="314" y="125" width="50" height="14" uuid="10d4ef20-fb97-494a-865f-e4ffaa1cebde"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -103,25 +104,25 @@
 				<text><![CDATA[Ship To:]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement key="rectangle-1" style="Arial_Normal" x="10" y="190" width="569" height="27" backcolor="#CCCCCC" uuid="30e342d0-129a-4284-bfb7-099168757e70"/>
+				<reportElement key="rectangle-1" style="Arial_Normal" x="10" y="205" width="569" height="27" backcolor="#CCCCCC" uuid="30e342d0-129a-4284-bfb7-099168757e70"/>
 			</rectangle>
 			<line>
-				<reportElement key="line-9" style="Arial_Normal" x="60" y="190" width="1" height="27" uuid="32a08d8f-504c-4839-b2de-b1f7d46eb468"/>
+				<reportElement key="line-9" style="Arial_Normal" x="60" y="205" width="1" height="27" uuid="32a08d8f-504c-4839-b2de-b1f7d46eb468"/>
 			</line>
 			<line>
-				<reportElement key="line-10" style="Arial_Normal" x="356" y="190" width="1" height="27" uuid="d6e7d490-b8ce-4b45-99e6-7cf9f6919a28"/>
+				<reportElement key="line-10" style="Arial_Normal" x="356" y="205" width="1" height="27" uuid="d6e7d490-b8ce-4b45-99e6-7cf9f6919a28"/>
 			</line>
 			<line>
-				<reportElement key="line-11" style="Arial_Normal" x="407" y="190" width="1" height="27" uuid="66cebfe9-cb88-4d87-95c4-6215c75429d8"/>
+				<reportElement key="line-11" style="Arial_Normal" x="407" y="205" width="1" height="27" uuid="66cebfe9-cb88-4d87-95c4-6215c75429d8"/>
 			</line>
 			<line>
-				<reportElement key="line-12" style="Arial_Normal" x="490" y="190" width="1" height="27" uuid="d96797cb-06d4-47cc-ad7d-3e25254b9f24"/>
+				<reportElement key="line-12" style="Arial_Normal" x="490" y="205" width="1" height="27" uuid="d96797cb-06d4-47cc-ad7d-3e25254b9f24"/>
 			</line>
 			<line>
-				<reportElement key="line-26" style="Arial_Normal" x="134" y="190" width="1" height="27" uuid="63f7247d-0db2-424a-b577-fd61902437cd"/>
+				<reportElement key="line-26" style="Arial_Normal" x="134" y="205" width="1" height="27" uuid="63f7247d-0db2-424a-b577-fd61902437cd"/>
 			</line>
 			<staticText>
-				<reportElement key="staticText-13" style="Arial_Normal" x="134" y="197" width="222" height="15" uuid="aaba0d45-80a0-4c50-b31b-adaf94795357"/>
+				<reportElement key="staticText-13" style="Arial_Normal" x="134" y="212" width="222" height="15" uuid="aaba0d45-80a0-4c50-b31b-adaf94795357"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -134,7 +135,7 @@
 				<text><![CDATA[Product Name/产品名称]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText-14" style="Arial_Normal" x="409" y="197" width="81" height="15" uuid="d85bee86-5a5e-42c6-a847-dbd71dd5e593"/>
+				<reportElement key="staticText-14" style="Arial_Normal" x="409" y="212" width="81" height="15" uuid="d85bee86-5a5e-42c6-a847-dbd71dd5e593"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -147,7 +148,7 @@
 				<text><![CDATA[UNIT PRICE/单价]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText-15" style="Arial_Normal" x="356" y="197" width="50" height="15" uuid="7912621d-64a4-469f-b112-4a4324ee501b"/>
+				<reportElement key="staticText-15" style="Arial_Normal" x="356" y="212" width="50" height="15" uuid="7912621d-64a4-469f-b112-4a4324ee501b"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -160,7 +161,7 @@
 				<text><![CDATA[QTY./数量]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText-16" style="Arial_Normal" x="490" y="197" width="85" height="15" uuid="e622495a-7113-4ade-b80a-8e6f9fa72b5b"/>
+				<reportElement key="staticText-16" style="Arial_Normal" x="490" y="212" width="85" height="15" uuid="e622495a-7113-4ade-b80a-8e6f9fa72b5b"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -173,7 +174,7 @@
 				<text><![CDATA[AMOUNT/总价]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText-25" style="Arial_Normal" x="60" y="197" width="74" height="15" uuid="a01e61ef-5ab2-4424-9011-1987d17ab53b"/>
+				<reportElement key="staticText-25" style="Arial_Normal" x="60" y="212" width="74" height="15" uuid="a01e61ef-5ab2-4424-9011-1987d17ab53b"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -186,7 +187,7 @@
 				<text><![CDATA[Item Id/编号]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText-34" style="Arial_Normal" x="10" y="197" width="50" height="15" uuid="ddbab348-611e-4cc3-bd81-43956e0a07ef"/>
+				<reportElement key="staticText-34" style="Arial_Normal" x="10" y="212" width="50" height="15" uuid="ddbab348-611e-4cc3-bd81-43956e0a07ef"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -199,7 +200,7 @@
 				<text><![CDATA[Line/行号]]></text>
 			</staticText>
 			<textField evaluationTime="Report" isBlankWhenNull="true">
-				<reportElement key="textField-8" x="319" y="129" width="249" height="18" isRemoveLineWhenBlank="true" uuid="5dd8a3d4-d590-413f-8f16-fd89bccd623f"/>
+				<reportElement key="textField-8" x="319" y="141" width="249" height="18" isRemoveLineWhenBlank="true" uuid="5dd8a3d4-d590-413f-8f16-fd89bccd623f"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -212,7 +213,7 @@
 				<textFieldExpression><![CDATA[$P{buyer_address}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report" isBlankWhenNull="true">
-				<reportElement key="textField-9" x="319" y="146" width="96" height="18" isRemoveLineWhenBlank="true" uuid="3769313a-5bbe-4fa2-b4b2-b83a2b1d41af"/>
+				<reportElement key="textField-9" x="319" y="158" width="96" height="18" isRemoveLineWhenBlank="true" uuid="3769313a-5bbe-4fa2-b4b2-b83a2b1d41af"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -225,7 +226,7 @@
 				<textFieldExpression><![CDATA[$P{buyer_city}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report" isBlankWhenNull="true">
-				<reportElement key="textField-10" x="480" y="147" width="57" height="17" isRemoveLineWhenBlank="true" uuid="74c0879e-66a8-477d-966d-b0e91be379cf"/>
+				<reportElement key="textField-10" x="480" y="159" width="57" height="17" isRemoveLineWhenBlank="true" uuid="74c0879e-66a8-477d-966d-b0e91be379cf"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -235,7 +236,7 @@
 				<textFieldExpression><![CDATA[$P{buyer_postCode}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report" isBlankWhenNull="true">
-				<reportElement key="textField-11" x="319" y="163" width="170" height="18" isRemoveLineWhenBlank="true" uuid="0c05565f-993b-45fa-abfb-d3e91108c6ed"/>
+				<reportElement key="textField-11" x="319" y="175" width="170" height="18" isRemoveLineWhenBlank="true" uuid="0c05565f-993b-45fa-abfb-d3e91108c6ed"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -245,7 +246,7 @@
 				<textFieldExpression><![CDATA[$P{buyer_mobile}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report" isBlankWhenNull="true">
-				<reportElement key="textField-13" x="416" y="147" width="65" height="17" isRemoveLineWhenBlank="true" uuid="15750780-9cce-4797-8420-7ce67f6fadf1"/>
+				<reportElement key="textField-13" x="416" y="159" width="65" height="17" isRemoveLineWhenBlank="true" uuid="15750780-9cce-4797-8420-7ce67f6fadf1"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -255,7 +256,7 @@
 				<textFieldExpression><![CDATA[$P{buyer_state}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report" isBlankWhenNull="true">
-				<reportElement key="textField-15" x="19" y="129" width="170" height="18" isRemoveLineWhenBlank="true" uuid="797cd81c-cc2c-4715-b421-15c61af92e17"/>
+				<reportElement key="textField-15" x="19" y="141" width="170" height="18" isRemoveLineWhenBlank="true" uuid="797cd81c-cc2c-4715-b421-15c61af92e17"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -265,7 +266,7 @@
 				<textFieldExpression><![CDATA[$P{buyer_mobile}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement key="textField-16" x="19" y="147" width="248" height="16" uuid="f234b9e6-8d06-407c-94ef-a3b9c9010290"/>
+				<reportElement key="textField-16" x="19" y="159" width="248" height="16" uuid="f234b9e6-8d06-407c-94ef-a3b9c9010290"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -278,7 +279,7 @@
 				<textFieldExpression><![CDATA[$P{buyer_name}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report" isBlankWhenNull="true">
-				<reportElement key="textField-17" x="19" y="163" width="249" height="18" isRemoveLineWhenBlank="true" uuid="bee9c377-94a0-4293-9153-5d353f0d87cb"/>
+				<reportElement key="textField-17" x="19" y="175" width="249" height="18" isRemoveLineWhenBlank="true" uuid="bee9c377-94a0-4293-9153-5d353f0d87cb"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -330,7 +331,7 @@
 				<textFieldExpression><![CDATA[$P{delivery_method}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="false">
-				<reportElement key="textField-17" style="Arial_Normal" x="374" y="74" width="35" height="14" uuid="bd666f1a-aba0-4a77-950e-486154cb5947"/>
+				<reportElement key="textField-17" style="Arial_Normal" x="374" y="90" width="35" height="14" uuid="bd666f1a-aba0-4a77-950e-486154cb5947"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -352,7 +353,7 @@
 				<text><![CDATA[INVOICE:]]></text>
 			</staticText>
 			<textField evaluationTime="Report" isBlankWhenNull="false">
-				<reportElement key="textField-18" style="Arial_Normal" x="410" y="74" width="54" height="14" uuid="c7de75b0-64b3-45ce-b976-ae433c0113db"/>
+				<reportElement key="textField-18" style="Arial_Normal" x="411" y="90" width="54" height="14" uuid="c7de75b0-64b3-45ce-b976-ae433c0113db"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -400,7 +401,7 @@
 				<textFieldExpression><![CDATA["Tel:"+$P{company_tel}+"  Fax:"+$P{company_fax}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement key="staticText-47" style="Arial_Normal" x="317" y="60" width="91" height="14" uuid="41f39e68-98e5-44a1-9469-ac2afa73af35"/>
+				<reportElement key="staticText-47" style="Arial_Normal" x="317" y="59" width="91" height="14" uuid="41f39e68-98e5-44a1-9469-ac2afa73af35"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -411,7 +412,7 @@
 				<text><![CDATA[Delivery Method:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText-45" style="Arial_Normal" x="317" y="74" width="55" height="14" uuid="edd53a7b-6e6d-4adc-b7f2-698b0028a78d"/>
+				<reportElement key="staticText-45" style="Arial_Normal" x="318" y="90" width="55" height="14" uuid="edd53a7b-6e6d-4adc-b7f2-698b0028a78d"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -437,11 +438,11 @@
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<text><![CDATA[DATE:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText-47" style="Arial_Normal" x="318" y="88" width="46" height="14" uuid="e498c7de-aa11-4e67-8128-1f49cb171444"/>
+				<reportElement key="staticText-47" style="Arial_Normal" x="318" y="74" width="46" height="14" uuid="e498c7de-aa11-4e67-8128-1f49cb171444"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -452,7 +453,7 @@
 				<text><![CDATA[Rep:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="false">
-				<reportElement key="textField-20" style="Arial_Normal" x="363" y="88" width="121" height="14" uuid="4291f88b-3077-4dce-ba97-c923b4de5f56"/>
+				<reportElement key="textField-20" style="Arial_Normal" x="363" y="74" width="121" height="14" uuid="4291f88b-3077-4dce-ba97-c923b4de5f56"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -462,7 +463,7 @@
 				<textElement verticalAlignment="Middle">
 					<font size="12" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{delivery_method}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{operator}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
@@ -470,9 +471,9 @@
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="30" splitType="Stretch">
+		<band height="54" splitType="Stretch">
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" stretchType="RelativeToBandHeight" x="135" y="-1" width="221" height="28" isPrintWhenDetailOverflows="true" uuid="f5dad85f-1f2f-43d1-b28e-07f812a1b6bd"/>
+				<reportElement key="textField" stretchType="RelativeToBandHeight" x="135" y="14" width="221" height="28" isPrintWhenDetailOverflows="true" uuid="f5dad85f-1f2f-43d1-b28e-07f812a1b6bd"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -485,7 +486,7 @@
 				<textFieldExpression><![CDATA[$F{product_name}]]></textFieldExpression>
 			</textField>
 			<textField pattern="##0.00" isBlankWhenNull="false">
-				<reportElement key="textField" x="407" y="-1" width="83" height="28" uuid="159ef2ef-a52c-4a61-a58b-03471c91b4dd"/>
+				<reportElement key="textField" x="407" y="14" width="83" height="28" uuid="159ef2ef-a52c-4a61-a58b-03471c91b4dd"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -496,7 +497,7 @@
 				<textFieldExpression><![CDATA[$F{agio_price}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="false">
-				<reportElement key="textField" x="356" y="-1" width="51" height="28" uuid="2ca41189-e72b-4e31-b3d1-be9fe6a1571d"/>
+				<reportElement key="textField" x="356" y="14" width="51" height="28" uuid="2ca41189-e72b-4e31-b3d1-be9fe6a1571d"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -509,28 +510,28 @@
 				<textFieldExpression><![CDATA[$F{product_num}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement key="line-3" style="Arial_Normal" positionType="Float" mode="Opaque" x="10" y="28" width="569" height="1" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="be3337a3-36b9-4ab9-83be-efc764825161"/>
+				<reportElement key="line-3" style="Arial_Normal" positionType="Float" mode="Opaque" x="10" y="43" width="569" height="1" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="be3337a3-36b9-4ab9-83be-efc764825161"/>
 			</line>
 			<line>
-				<reportElement key="line-4" style="Arial_Normal" x="10" y="-30" width="1" height="58" uuid="3aec6c91-6bde-49f8-8e17-9da838f6f98c"/>
+				<reportElement key="line-4" style="Arial_Normal" x="10" y="-15" width="1" height="58" uuid="3aec6c91-6bde-49f8-8e17-9da838f6f98c"/>
 			</line>
 			<line>
-				<reportElement key="line-5" style="Arial_Normal" x="578" y="-30" width="1" height="58" uuid="add01aeb-3694-4015-924d-9f305561575d"/>
+				<reportElement key="line-5" style="Arial_Normal" x="578" y="-15" width="1" height="58" uuid="add01aeb-3694-4015-924d-9f305561575d"/>
 			</line>
 			<line>
-				<reportElement key="line-6" style="Arial_Normal" x="407" y="-30" width="1" height="58" uuid="d48c4efd-ea4b-4705-8592-89b4842b6437"/>
+				<reportElement key="line-6" style="Arial_Normal" x="407" y="-15" width="1" height="58" uuid="d48c4efd-ea4b-4705-8592-89b4842b6437"/>
 			</line>
 			<line>
-				<reportElement key="line-7" style="Arial_Normal" x="356" y="-30" width="1" height="58" uuid="49c26205-408d-4e9d-a9ce-0bd15f58eedd"/>
+				<reportElement key="line-7" style="Arial_Normal" x="356" y="-15" width="1" height="58" uuid="49c26205-408d-4e9d-a9ce-0bd15f58eedd"/>
 			</line>
 			<line>
-				<reportElement key="line-8" style="Arial_Normal" x="60" y="-30" width="1" height="59" uuid="87bb8ae2-b045-4fb3-a291-6188604e480a"/>
+				<reportElement key="line-8" style="Arial_Normal" x="60" y="-15" width="1" height="59" uuid="87bb8ae2-b045-4fb3-a291-6188604e480a"/>
 			</line>
 			<line>
-				<reportElement key="line-13" style="Arial_Normal" x="490" y="-30" width="1" height="58" uuid="e0a7ab6d-0e3c-45d8-8e24-b69f2dcf33af"/>
+				<reportElement key="line-13" style="Arial_Normal" x="490" y="-15" width="1" height="58" uuid="e0a7ab6d-0e3c-45d8-8e24-b69f2dcf33af"/>
 			</line>
 			<textField pattern="##0.00" isBlankWhenNull="false">
-				<reportElement key="textField" x="493" y="-1" width="84" height="28" uuid="2aba6940-c3f1-4b65-8335-ccc4696f500d"/>
+				<reportElement key="textField" x="493" y="14" width="84" height="28" uuid="2aba6940-c3f1-4b65-8335-ccc4696f500d"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -541,7 +542,7 @@
 				<textFieldExpression><![CDATA[$V{AMOUNT}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="false">
-				<reportElement key="textField" x="9" y="-1" width="50" height="28" uuid="6d956d26-6555-46c5-9d13-255897682eaf"/>
+				<reportElement key="textField" x="9" y="14" width="50" height="28" uuid="6d956d26-6555-46c5-9d13-255897682eaf"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -554,10 +555,10 @@
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement key="line-25" style="Arial_Normal" x="134" y="-30" width="1" height="58" uuid="906d0b29-aeb0-4794-b6af-24e6b9623df9"/>
+				<reportElement key="line-25" style="Arial_Normal" x="134" y="-15" width="1" height="58" uuid="906d0b29-aeb0-4794-b6af-24e6b9623df9"/>
 			</line>
 			<textField isBlankWhenNull="true">
-				<reportElement key="textField-6" x="61" y="-1" width="71" height="28" uuid="ac888f51-9558-4f8a-bb9a-ce5434d72ed3"/>
+				<reportElement key="textField-6" x="61" y="14" width="71" height="28" uuid="ac888f51-9558-4f8a-bb9a-ce5434d72ed3"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -728,18 +729,22 @@
 				<textFieldExpression><![CDATA[new Double($P{balance})]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement key="staticText-18" style="Arial_Normal" x="17" y="216" width="289" height="74" uuid="ca9191c7-1f82-44c0-91d4-a9b15f2a6c46"/>
+				<reportElement key="staticText-18" style="Arial_Normal" x="17" y="160" width="289" height="82" uuid="ca9191c7-1f82-44c0-91d4-a9b15f2a6c46"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement>
-					<font size="7"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="false"/>
 				</textElement>
-				<text><![CDATA[ALL RETURN AND EXCHANGE MUST BE MADE WITHIN 10DAYS FROM PURCHASED DATE.ALL CLAIMS AND RETURNED GOODS MUST BE ACCOMPNAIED WITH RECEIPTS. ALL RETURNED ITEMS ARE SUBJECT TO 20% RESTOCKING FEE. NO CASH REFUND, STORE CREDIT ONLY. NO RETURN OR EXCHANGE ON SPECIAL MADE TO ORDER, BOILER, HEATING FURNANCE, FURNACE ACCESORRY, CHEMICAL, GAS, PAINT, BATH TUBS, ELECTRICAL ITEMS AND ETC. ALL RETURNED  ITEMS MUST BE IN GOOD AND SELLABLE CONDITION, IN ORIGINAL BOXES(WHENEVER POSSIBLE), AND WITH ALL PAPERWORK, PARTS AND ACCESSORIES.ALL TOOLS ARE FINAL SALE. NO RETURN OR EXCHANGE
-]]></text>
+				<text><![CDATA[Sidewalk Delivery Only!!!
+30% Deposit required on all orders.
+Returns must be presented with receipts,Returns
+After 10 days subject to 20% restocking fee.No returns after 30 days.
+No returns/refunds/exchanges on special orders or custom-made
+orders.]]></text>
 			</staticText>
 			<rectangle>
 				<reportElement key="rectangle-5" style="Arial_Normal" x="17" y="48" width="344" height="47" uuid="9f3148fb-627d-4ae2-a815-1c1126416372"/>
@@ -780,7 +785,7 @@
 				<textFieldExpression><![CDATA[$P{remark}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement key="staticText-26" style="Arial_Normal" x="343" y="165" width="60" height="21" uuid="b99c5e4e-ed59-428d-92de-5895351a4ab0"/>
+				<reportElement key="staticText-26" style="Arial_Normal" x="343" y="149" width="60" height="21" uuid="b99c5e4e-ed59-428d-92de-5895351a4ab0"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -793,7 +798,7 @@
 				<text><![CDATA[Name/姓名:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText-27" style="Arial_Normal" x="312" y="197" width="91" height="21" uuid="504a7872-6d02-4c23-92a7-05df82fe939d"/>
+				<reportElement key="staticText-27" style="Arial_Normal" x="312" y="181" width="91" height="21" uuid="504a7872-6d02-4c23-92a7-05df82fe939d"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -806,7 +811,7 @@
 				<text><![CDATA[Signature/签名:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText-28" style="Arial_Normal" x="342" y="226" width="60" height="21" uuid="8aa64844-2556-4217-9a15-37c801baa48d"/>
+				<reportElement key="staticText-28" style="Arial_Normal" x="342" y="210" width="60" height="21" uuid="8aa64844-2556-4217-9a15-37c801baa48d"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -819,16 +824,16 @@
 				<text><![CDATA[Date/日期:]]></text>
 			</staticText>
 			<line>
-				<reportElement key="line-27" style="Arial_Normal" x="411" y="186" width="144" height="1" uuid="196041ef-935d-4130-a34c-7cda36f1fc55"/>
+				<reportElement key="line-27" style="Arial_Normal" x="411" y="170" width="144" height="1" uuid="196041ef-935d-4130-a34c-7cda36f1fc55"/>
 			</line>
 			<line>
-				<reportElement key="line-28" style="Arial_Normal" x="411" y="218" width="144" height="1" uuid="490a16f3-d385-4a6d-b655-890caa725229"/>
+				<reportElement key="line-28" style="Arial_Normal" x="411" y="202" width="144" height="1" uuid="490a16f3-d385-4a6d-b655-890caa725229"/>
 			</line>
 			<line>
-				<reportElement key="line-29" style="Arial_Normal" x="411" y="247" width="144" height="1" uuid="c40bcd2b-fb6e-47ff-bca7-a779be61cb70"/>
+				<reportElement key="line-29" style="Arial_Normal" x="411" y="231" width="144" height="1" uuid="c40bcd2b-fb6e-47ff-bca7-a779be61cb70"/>
 			</line>
 			<staticText>
-				<reportElement key="staticText-37" style="Arial_Normal" x="16" y="130" width="68" height="23" uuid="6d2e624c-8718-4761-b50c-52ccc16de19e"/>
+				<reportElement key="staticText-37" style="Arial_Normal" x="16" y="133" width="68" height="23" uuid="6d2e624c-8718-4761-b50c-52ccc16de19e"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -839,45 +844,6 @@
 					<font fontName="黑体" size="14" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
 				</textElement>
 				<text><![CDATA[谢谢惠顾]]></text>
-			</staticText>
-			<staticText>
-				<reportElement key="textField-4" x="16" y="155" width="279" height="18" uuid="e07154e3-f5bb-4e27-878c-176aaa2f7dee"/>
-				<box>
-					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Left">
-					<font fontName="黑体" size="12" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
-				</textElement>
-				<text><![CDATA[退货时间(TIME FOR RETURN)：1:00pm-5:00pm]]></text>
-			</staticText>
-			<staticText>
-				<reportElement key="staticText-38" style="Arial_Normal" x="16" y="175" width="281" height="38" uuid="88460836-9d3a-43dd-aaf8-7adf8b3d310c"/>
-				<box>
-					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<font fontName="黑体" size="8" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
-				</textElement>
-				<text><![CDATA[货品出门十天后恕不能退换。所有货品如需退货须携带单据。所有退回货品将收取20%手续费，无现金退款。电器，热水炉，暖气炉，炉配件，玻璃，化学物品，油漆，浴缸等，及特别订购货品不能退换。工具出门一律不退换. 货品出门如有损坏本公司恕不负责。]]></text>
-			</staticText>
-			<staticText>
-				<reportElement key="staticText-41" style="Arial_Normal" x="91" y="139" width="206" height="14" uuid="14cf1705-705c-44b5-aee7-929f5b26643e"/>
-				<box>
-					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement>
-					<font fontName="黑体" size="8" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
-				</textElement>
-				<text><![CDATA[所有订单有问题，必须在三天内提出，过期不负责]]></text>
 			</staticText>
 		</band>
 	</summary>

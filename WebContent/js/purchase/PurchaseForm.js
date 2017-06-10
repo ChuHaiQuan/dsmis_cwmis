@@ -160,6 +160,8 @@ Ext.define('WJM.purchase.PurchaseForm', {
 				}, {
 					xtype : 'button', iconCls : 'search', text : '从订单选择产品', scope : this, handler : this.onSearchSaleClick
 				}, {
+					xtype : 'button', iconCls : 'search', text : '从产品库中选择', scope : this, handler : this.onProductSelectClick
+				}, {
 					xtype : 'button', iconCls : 'search', text : '清空', scope : this, handler : this.clearForm
 				}, {
 					xtype : 'button', iconCls : 'remove', text : '删除产品', scope : this, handler : this.onRemoveProductClick
@@ -278,6 +280,25 @@ Ext.define('WJM.purchase.PurchaseForm', {
 				constrainHeader : true, layout : 'fit', items : [ grid ]
 			});
 		}
+		win.show();
+	},
+	/**
+	 * 从产品库中选择产品
+	 */
+	onProductSelectClick : function() {
+		var desktop = myDesktopApp.getDesktop();
+		var win = desktop.getWindow("product");
+		if (!win) {
+			var grid = Ext.create('WJM.product.ProductGrid', {
+				editAble : true, hasCost : true
+			});
+			win = desktop.createWindow({
+				id : "product", title : "产品检索(拖动订单详细产品到产品列表区域)", width : 800, height : 600, iconCls : 'icon-grid', animCollapse : false, 
+				constrainHeader : true,
+				layout : 'fit', items : grid
+			});
+		}
+		debugger;
 		win.show();
 	},
 	/**

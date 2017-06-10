@@ -125,7 +125,11 @@ Ext.define('WJM.product.ProductGrid', {
 							xtype : 'textfield', fieldLabel : 'description', labelWidth : 150, name : 'product_name', listeners : {
 								change : this.onAutoSearch, scope : this
 							}
-						} ]
+						}, {
+							xtype : 'textfield', fieldLabel : 'vendor/供应商', labelWidth : 150, name : 'vendor', listeners : {
+								change : this.onAutoSearch, scope : this
+							}
+						}  ]
 					},
 					Ext.create('WJM.product.ProductCategoryTree', {
 						region : 'west', width : 200, editAble : false, collapsible : true, title : '类别检索', editAble : this.editAble, listeners : {

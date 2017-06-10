@@ -149,7 +149,7 @@ Ext.define('WJM.purchase.PurchaseGrid', {
 				iconCls : 'edit', text : '编辑', scope : this, handler : this.onEditClick
 			});
 		}
-
+		
 		this.editTopBar = Ext.create('Ext.toolbar.Toolbar', {
 			items : defaultItems
 		});
