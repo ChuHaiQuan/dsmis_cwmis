@@ -41,9 +41,18 @@ public class TBuyer implements Serializable {
     private String passwd;
     private float total;
     private int acc_type;
+    private int taxable; //0 交税  1:不交税
     
 
-    public int getAcc_type() {
+    public int getTaxable() {
+		return taxable;
+	}
+
+	public void setTaxable(int taxable) {
+		this.taxable = taxable;
+	}
+
+	public int getAcc_type() {
 		return acc_type;
 	}
 

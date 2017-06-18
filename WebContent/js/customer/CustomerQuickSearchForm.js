@@ -34,6 +34,7 @@ Ext.define('WJM.customer.CustomerQuickSearchForm', {
     onCustomerSelect: function (combo, records) {
         combo.setValue('');
         var results = [];
+        debugger;
         Ext.Array.each(records, function (item) {
             results.push(Ext.create('WJM.model.TCustomer', item.getData()));
         });

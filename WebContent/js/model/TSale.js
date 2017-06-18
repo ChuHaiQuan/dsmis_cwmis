@@ -267,9 +267,9 @@ Ext.create('Ext.data.Store', {
 		"value" : "Check", "name" : "Check/支票"
 	}, {
 		"value" : "Deposit", "name" : "Deposit/预付款"
-	} , {
+	} /*, {
 		"value" : "Credit", "name" : "Credit/信用账户"
-	}]
+	}*/]
 });
 
 Ext.create('Ext.data.Store', {
@@ -279,5 +279,18 @@ Ext.create('Ext.data.Store', {
 		"value" : "邮寄", "name" : "邮寄"
 	}, {
 		"value" : "自取", "name" : "自取"
+	} ]
+});
+
+
+Ext.create('Ext.data.Store', {
+	fields : [ 'value', 'name' ], storeId : 'SalePayStatusType', data : [ {
+		"value" : -1, "name" : "All/所有"
+	}, {
+		"value" : 0, "name" : "Paid/已付款"
+	}, {
+		"value" : 2, "name" : "patial paid/部分付款"
+	}, {
+		"value" : 1, "name" : "UnPaid/未付款"
 	} ]
 });

@@ -54,6 +54,10 @@ Ext.define('WJM.model.TSaleProduct', {
 	}, {
 		name : 'return_damage_num'
 	}, {
+		name : 'refundMethod', convert : function(v, record) {
+			return (!v?"Cash":v);
+		}
+	}, {
 		name : 'sub_total', convert : function(v, record) {
 			return record.data.product_price * record.data.product_num;
 		}

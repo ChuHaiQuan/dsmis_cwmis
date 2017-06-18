@@ -55,6 +55,8 @@ Ext.define('WJM.customer.CustomerGrid', {
 		}, {
 			text : "tax id/税号", dataIndex : 'taxCode', sortable : true, width : 100
 		}, {
+			text : "taxable/是否收税", dataIndex : 'taxable_cn', sortable : true, width : 100
+		}, {
 			text : "Contact Person/联系人", dataIndex : 'linkMan', sortable : true, width : 100
 		}, {
 			text : "phone/电话", dataIndex : 'mobile', sortable : true

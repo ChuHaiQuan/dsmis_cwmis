@@ -62,6 +62,19 @@ Ext.define('WJM.model.TCustomer', {
 	}, {
 		name : 'passwd'
 	}, {
+		name : 'taxable'
+	}, {
+		name : 'taxable_cn', convert : function(v, record) {
+			
+			if(record.data.taxable == 0){
+				return "交税";
+			}else if(record.data.taxable == 1){
+				return "不交税";
+			}else
+				return "";
+			
+		}
+	},{
 		name : 'acc_type'
 	}, {
 		name : 'acc_type_cn', convert : function(v, record) {
@@ -144,6 +157,16 @@ Ext.create('Ext.data.Store', {
 		"value" : 2, "name" : "工程公司"
 	} ]
 });
+
+Ext.create('Ext.data.Store', {
+	fields : [ 'value', 'name' ], storeId : 'CustomerTaxableStore', data : [ {
+		"value" : 0, "name" : "交税"
+	}, {
+		"value" : 1, "name" : "不交税"
+	} ]
+});
+
+
 Ext.create('WJM.model.CustomerBaseStore', {
 	storeId : 'CustomerSearchStore'
 });

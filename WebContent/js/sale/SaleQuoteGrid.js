@@ -368,7 +368,7 @@ Ext.define('WJM.sale.SaleQuoteGrid', {
 	            	        type : 'json'
 	            	    },
 	            	    success: function(response,a,b){
-	            	    	Ext.Msg.alert('提示', '生成销售订单成功! '+response.responseText);
+	            	    	Ext.Msg.alert('提示', '生成销售订单成功! invoice #:'+JSON.parse(response.responseText).invoice);
 	            	    }
 	            	});
 	            	

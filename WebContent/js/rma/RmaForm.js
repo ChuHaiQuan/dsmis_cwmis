@@ -3,7 +3,7 @@
  */
 Ext.define('WJM.rma.RmaForm', {
 	extend : 'Ext.panel.Panel',
-	requires : [ 'WJM.model.TSale' ],
+	requires : [ 'WJM.model.TSale','WJM.model.TPurchase' ],
 	autoScroll : true,
 	selectForm : undefined,
 	initComponent : function() {
@@ -57,6 +57,12 @@ Ext.define('WJM.rma.RmaForm', {
 		}, {
 			text : "sub total/小计", dataIndex : 'sub_total', sortable : true, xtype : 'numbercolumn', format : '$0.00'
 		}, {
+			text : "Refund method/退款方式", dataIndex : 'refundMethod',width:150, sortable : true, xtype : 'gridcolumn', editor:{
+				xtype : 'combobox', text : 'Refund method/退款方式', labelWidth : 170, dataIndex : 'refundMethod', displayField : 'name',
+				valueField : 'value', store : 'SaleCacheMethodStore'
+			}
+		}
+		, {
 			text : "RMAed credit quantity/已退货无损数量", dataIndex : 'credit_num', sortable : true, xtype : 'numbercolumn', format : '0,000'
 		}, {
 			text : "RMAed damage quantity/已退货损坏数量", dataIndex : 'damage_num', sortable : true, xtype : 'numbercolumn', format : '0,000'
@@ -79,7 +85,7 @@ Ext.define('WJM.rma.RmaForm', {
 			},
 			items : [
 					{
-						anchor : '100%', height : 110, xtype : 'form', region : 'north', autoScroll : true, title : '订单检索', bodyPadding : 10, layout : {
+						anchor : '100%', height : 130, xtype : 'form', region : 'north', autoScroll : true, title : '订单检索', bodyPadding : 10, layout : {
 							columns : 2, type : 'table', tableAttrs : {
 								style : {
 									width : '100%'
@@ -95,6 +101,9 @@ Ext.define('WJM.rma.RmaForm', {
 							xtype : 'textfield', fieldLabel : 'invoice #/invoice单号', labelWidth : 150, allowBlank : true, name : 'invoicecode'
 						}, {
 							xtype : 'textfield', fieldLabel : 'customer mobile/电话', labelWidth : 150, allowBlank : true, name : 'buyer_mobile'
+						}, {
+							xtype : 'combobox', fieldLabel : 'payment status/付款状态', labelWidth : 150, allowBlank : true, name : 'payment_status',
+							displayField : 'name',valueField : 'value', store : 'SalePayStatusType',
 						} ]
 					},
 					{

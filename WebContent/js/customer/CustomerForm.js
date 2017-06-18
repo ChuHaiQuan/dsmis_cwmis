@@ -18,7 +18,7 @@ Ext.define('WJM.customer.CustomerForm', {
 				name : 'recDate', xtype : 'hiddenfield', value : Ext.Date.format(new Date(), 'Y-m-d H:i:s')
 			},
 			{
-				xtype : 'combobox', fieldLabel : '/Customer type/客户类型', labelWidth : 150, name : 'acc_type', displayField : 'name',
+				xtype : 'combobox', fieldLabel : 'Customer type/客户类型', labelWidth : 150, name : 'acc_type', displayField : 'name',
 				valueField : 'value', store : 'CustomerTypeStore', allowBlank : false,listeners : {
 					 scope : me
 				}
@@ -54,6 +54,50 @@ Ext.define('WJM.customer.CustomerForm', {
 				name : 'leav_money', fieldLabel : 'deposit/预付金额', xtype : 'adnumberfield'
 			}, {
 				name : 'credit_Line', fieldLabel : 'Credit Line/信用金额', xtype : 'adnumberfield'
+			},
+			{
+				xtype : 'combobox', fieldLabel : 'Taxable/是否交税', labelWidth : 150, name : 'taxable', displayField : 'name',
+				valueField : 'value', store : 'CustomerTaxableStore', allowBlank : false,listeners : {
+					 scope : me,change:function(model,b,n){
+						 debugger;
+						 if(b==1 && n==0){
+							 
+							 function dialog(){
+								 var messageBox = Ext.Msg.prompt('approver', '请输入优惠确认人code:', function (btn, text) {
+		                                if (btn == 'ok') {
+		                                    var proxy = new Ext.data.proxy.Ajax({
+		                                        model: 'WJM.model.TEmployee', url: 'sale.do?action=checkApprover',
+
+		                                        reader: new Ext.data.reader.Json({
+		                                            type: 'json', messageProperty: 'msg'
+		                                        }),
+
+		                                        extraParams: {
+		                                            confirm_code: text
+		                                        },
+
+		                                        writer: Ext.create('WJM.FormWriter')
+		                                    });
+		                                    proxy.read(new Ext.data.Operation({}), function (records, operation) {
+		                                        if (records.success) {
+		                                        	
+		                                        } else {
+		                                            Ext.Msg.alert('提示', records.error);
+		                                            dialog();
+		                                        }
+		                                    }, me);
+		                                }
+		                            });
+		                            // 将弹出框hack 为 密码弹框
+		                            Ext.dom.Element.get(messageBox.down('textfield').getInputId()).dom.type = 'password';
+							 }
+							 
+							 
+							 dialog();
+							 
+						 }
+					 }
+				}
 			}, {
 				name : 'myMemo', fieldLabel : 'remark/注释', xtype : 'textareafield'
 			} ], dockedItems : [ {

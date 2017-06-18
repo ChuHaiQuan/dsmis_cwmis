@@ -66,6 +66,7 @@ public class TSaleAction extends BaseDispatchAction {
     public ActionForward list(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         String condition = " where 1=1 ";
+        String paymentStatus = request.getParameter("payment_status");
         TSaleForm tf = (TSaleForm) form;
         if (tf.getOper_id() != 0)
             condition += " and oper_id=" + tf.getOper_id();
@@ -94,6 +95,7 @@ public class TSaleAction extends BaseDispatchAction {
         if (tf.getIf_cashed() != -1) {
             condition += " and If_cashed = " + tf.getIf_cashed();
         }
+        
         if(StringUtils.isNotEmpty(tf.getOper_name())){
         	condition += " and oper_name = '" + tf.getOper_name()+"'";
         }
@@ -102,8 +104,24 @@ public class TSaleAction extends BaseDispatchAction {
         if(StringUtils.isNotEmpty(tf.getProduct_name())){
         	condition+=" and id IN (SELECT sale_id FROM tsaleproduct WHERE product_name LIKE '%"+tf.getProduct_name()+"%')";
         }
+        
+        if(StringUtils.isNotEmpty(paymentStatus)){
+        	
+        	switch (paymentStatus) {
+			case "0":
+				condition += " and If_cashed = 1";
+				break;
+			case "1":
+				condition += " and paid_price = 0";
+			case "2":
+				condition += " and paid_price>0 and paid_price<all_price" ;				
+				break;
+			default:
+				break;
+			}
+        }
         condition += " order by id desc limit 5000";
-        request.setAttribute("maxCount", 5000);
+       // request.setAttribute("maxCount", 5000);
         return super.superListPage(mapping, form, request, response, condition, "");
     }
 
@@ -819,6 +837,17 @@ public class TSaleAction extends BaseDispatchAction {
                 Webservice.execute(TSaleProduct.class, sql);
                 // 恢复库存
                 sql = "update TProduct set num=num+" + saleProduct.getReturn_credit_num() + " where id=" + saleProduct.getProduct_id();
+                //归还额度
+                if("Deposit".equals(saleProduct.getRefundMethod())){
+	                TBuyer tBuyer = Webservice.get(TBuyer.class, s.getBuyer_id());
+	                tBuyer.setLeav_money(tBuyer.getLeav_money() + (float)(saleProduct.getAgio_price()*rma_num));
+	                Webservice.update(tBuyer, tBuyer.getId());
+                    
+                }else if("Credit".equals(saleProduct.getRefundMethod())){
+                	TBuyer tBuyer = Webservice.get(TBuyer.class, s.getBuyer_id());
+                    tBuyer.setCredit_Line(tBuyer.getCredit_Line() + (float)(saleProduct.getAgio_price()*rma_num));
+                    Webservice.update(tBuyer, tBuyer.getId());
+                }
                 Webservice.execute(TProduct.class, sql);
                 subtotal_price += saleProduct.getAgio_price() * rma_num;
             }
@@ -932,13 +961,24 @@ public class TSaleAction extends BaseDispatchAction {
                 paid_price = sale.getAll_price();
             }
             // 预付款支付
-            if (sale.getBuyer_id() > 0 && "Deposit".equals(f.getPayment())) {
+            if (sale.getBuyer_id() > 0 ) {
                 TBuyer tBuyer = Webservice.get(TBuyer.class, sale.getBuyer_id());
-                if (tBuyer != null) {
-                    if (tBuyer.getLeav_money() - f.getAccept() < 0) {
-                        return "保存失败，预存金额不足！";
+                if("Deposit".equals(f.getPayment())){
+                	if (tBuyer != null) {
+                        if (tBuyer.getLeav_money() - f.getAccept() < 0) {
+                            return "保存失败，预存金额不足！";
+                        }
                     }
                 }
+                
+                if("Credit".equals(f.getPayment())){
+                	if (tBuyer != null) {
+                        if (tBuyer.getCredit_Line() - f.getAccept() < 0) {
+                            return "保存失败,信用额度不足！";
+                        }
+                    }
+                }
+                
             }
             String sql = "update TSale set if_cashed='" + if_cashed + "', cash_oper_id=" + user_id + ", paid_price=" + paid_price
                     + ",cash_oper_code='" + user_code + "'" + ",cash_oper_name='" + user_name + "'" + ",cash_time='"
@@ -949,6 +989,11 @@ public class TSaleAction extends BaseDispatchAction {
                 if ("Deposit".equals(f.getPayment())) {
                     TBuyer tBuyer = Webservice.get(TBuyer.class, sale.getBuyer_id());
                     tBuyer.setLeav_money(tBuyer.getLeav_money() - f.getAccept());
+                    Webservice.update(tBuyer, tBuyer.getId());
+                }
+                if("Credit".equals(f.getPayment())){
+                	TBuyer tBuyer = Webservice.get(TBuyer.class, sale.getBuyer_id());
+                    tBuyer.setCredit_Line(tBuyer.getCredit_Line() - f.getAccept());
                     Webservice.update(tBuyer, tBuyer.getId());
                 }
                 this.resetBuyerPrice(sale.getBuyer_id());
@@ -1057,10 +1102,17 @@ public class TSaleAction extends BaseDispatchAction {
     public ActionForward credit_warn_clear(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         try {
+        	TSale sale = Webservice.get(TSale.class, request.getParameter("sale_id"));
+        	
             List<TSaleHistory> list =  Webservice.listAll(TSaleHistory.class, " where sale_id="+request.getParameter("sale_id"), "");
             for (TSaleHistory sh:list) {
 				sh.setPayment("Cash");
 				Webservice.update(sh, sh.getId());
+				if(sale.getBuyer_id()>0){
+	            	TBuyer tBuyer = Webservice.get(TBuyer.class, sale.getBuyer_id());
+	                tBuyer.setCredit_Line(tBuyer.getCredit_Line() + (float)sh.getAmount());
+	                Webservice.update(tBuyer, tBuyer.getId());
+	            }
 			}
             response.getWriter().println(JsonUtil.getSuccessJson());
         } catch (Exception e) {

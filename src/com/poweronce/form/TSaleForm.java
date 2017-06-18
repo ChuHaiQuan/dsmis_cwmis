@@ -38,7 +38,7 @@ public class TSaleForm extends BasePageForm {
     private double sub_total;
     private double discount;
     private double discountpercent;
-
+    private String refundMethod;
 
 	private String payment;
 
@@ -75,10 +75,24 @@ public class TSaleForm extends BasePageForm {
     private String company_name_pic_logo;
     private String company_logo_pic_logo;
     private float invoiceTax;
+    private int taxable;
     
     
-    
+	public String getRefundMethod() {
+		return refundMethod;
+	}
 
+	public void setRefundMethod(String refundMethod) {
+		this.refundMethod = refundMethod;
+	}
+
+	public int getTaxable() {
+		return taxable;
+	}
+
+	public void setTaxable(int taxable) {
+		this.taxable = taxable;
+	}
 
 	public Integer getBuyer_type() {
 		return buyer_type;

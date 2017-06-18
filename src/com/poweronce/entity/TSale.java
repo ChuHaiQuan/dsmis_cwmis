@@ -68,6 +68,18 @@ public class TSale implements Serializable {
      */
     private double refund;
     
+    
+    private int taxable;
+    
+    
+
+	public int getTaxable() {
+		return taxable;
+	}
+
+	public void setTaxable(int taxable) {
+		this.taxable = taxable;
+	}
 
 	public Integer getBuyer_type() {
 		return buyer_type;

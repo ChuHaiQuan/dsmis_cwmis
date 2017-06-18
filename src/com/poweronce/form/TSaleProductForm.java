@@ -26,8 +26,17 @@ public class TSaleProductForm extends BasePageForm {
     private int damage_num;
     private int return_credit_num;
     private int return_damage_num;
+    private String refundMethod;
+    
+    public String getRefundMethod() {
+		return refundMethod;
+	}
 
-    public int getCredit_num() {
+	public void setRefundMethod(String refundMethod) {
+		this.refundMethod = refundMethod;
+	}
+
+	public int getCredit_num() {
 	return credit_num;
     }
 

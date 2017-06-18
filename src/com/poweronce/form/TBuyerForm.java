@@ -36,9 +36,19 @@ public class TBuyerForm extends BasePageForm {
     private Float credit_Line;
 
     private int acc_type;
+    private int taxable;
+    
     
 
-    public int getAcc_type() {
+    public int getTaxable() {
+		return taxable;
+	}
+
+	public void setTaxable(int taxable) {
+		this.taxable = taxable;
+	}
+
+	public int getAcc_type() {
 		return acc_type;
 	}
 
