@@ -276,6 +276,7 @@ public class TSaleAction extends BaseDispatchAction {
             Map<String, Object> parameters = new HashMap<String, Object>();
             
             parameters.put("company_name", sale.getCompany_name());
+            parameters.put("send_type", sale.getSend_type());
             parameters.put("company_address", sale.getCompany_address());
             parameters.put("company_tel", sale.getCompany_tel());
             parameters.put("company_fax", sale.getCompany_fax());
