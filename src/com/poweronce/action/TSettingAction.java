@@ -42,6 +42,15 @@ public class TSettingAction extends BaseDispatchAction {
 
     private String cmd_path = "mysqldump -uroot -p123456  cwmis > c:\backup-file.sql";
 
+    public ActionForward downProductImportTemplate(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+    	String rpath = this.getServlet().getServletContext().getRealPath("/");
+    	super.download(mapping, form, request, response, rpath+"产品导入模板.xlsx");	
+        return null;
+    }
+
+    
+    
     public ActionForward backupdatabase(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
             throws Exception {
     	String backup_path = this.getServlet().getServletContext().getRealPath("/");

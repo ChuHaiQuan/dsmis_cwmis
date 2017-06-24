@@ -265,7 +265,14 @@ public class TSaleAction extends BaseDispatchAction {
             throws Exception {
         try {
             HttpSession session = request.getSession(false);
-            List sale_product_list = (List) session.getAttribute("sale_product_list");
+            List<TSaleProduct> sale_product_list = (List<TSaleProduct>) session.getAttribute("sale_product_list");
+            
+            if(sale_product_list!=null && sale_product_list.size()>0){
+            	for(TSaleProduct t : sale_product_list){
+            		TProduct p = Webservice.get(TProduct.class, t.getProduct_id());
+            		if(p!=null)t.setUnit_qty(p.getProduct_name_cn());
+            	}
+            }
             TSale sale = (TSale) session.getAttribute("sale");
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             String path = request.getRealPath("");

@@ -31,8 +31,18 @@ public class TSaleProduct implements Serializable {
     private int back_order_id;
     private String back_order_time;
     private String back_order_code;
+    private String unit_qty;
+    
+    
+    public String getUnit_qty() {
+		return unit_qty;
+	}
 
-    public double getAgio() {
+	public void setUnit_qty(String unit_qty) {
+		this.unit_qty = unit_qty;
+	}
+
+	public double getAgio() {
         return agio;
     }
 

@@ -31,16 +31,40 @@ Ext.define('WJM.admin.BackUpModel', {
 							handler : this.onBackupClick
 						} ]
 			});
-
+			var grid3 = Ext.create('Ext.panel.Panel', {
+				title : '商品导入',
+				layout : {
+					type : 'vbox', // Arrange child items vertically
+					align : 'center', // Each takes up full width
+					padding : 10
+				},
+				items : [
+						,
+						{
+							xtype : 'button', text : '<span style="font-size: 20px;">模板下载</span>', scale : 'large', margin : '30 0 0 0', scope : this,
+							handler : this.onDownTemplateClick
+						} ,
+						{
+							xtype : 'file', text : '<span style="font-size: 20px;">产品导入</span>', scale : 'large', margin : '30 0 0 0', scope : this,
+							handler : this.onImportClick
+						} ]
+			});
 			var grid2 = Ext.create('WJM.admin.CompanyForm');
 			win = desktop.createWindow({
 				id : this.id, title : this.title, width : 400, height : 400, iconCls : 'icon-grid', animCollapse : false, constrainHeader : true,
 				layout : 'fit', items : {
-					xtype : 'tabpanel', items : [ grid2, grid ]
+					xtype : 'tabpanel', items : [ grid2, grid,grid3 ]
 				}
 			});
 		}
 		return win;
+	},
+	
+	onImportClick:function(){
+		
+	},
+	onDownTemplateClick:function(){
+		window.open('setting.do?action=downProductImportTemplate');
 	},
 	/**
 	 * 备份

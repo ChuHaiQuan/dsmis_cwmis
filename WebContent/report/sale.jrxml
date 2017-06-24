@@ -4,7 +4,7 @@
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="240"/>
+	<property name="ireport.y" value="0"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
 	<import value="net.sf.jasperreports.engine.data.*"/>
@@ -341,17 +341,6 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER} + " OF "]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement key="staticText-46" style="Arial_Normal" x="317" y="27" width="55" height="14" uuid="8743c95c-f963-4221-b918-bffa65f21538"/>
-				<box>
-					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Left"/>
-				<text><![CDATA[INVOICE:]]></text>
-			</staticText>
 			<textField evaluationTime="Report" isBlankWhenNull="false">
 				<reportElement key="textField-18" style="Arial_Normal" x="411" y="90" width="54" height="14" uuid="c7de75b0-64b3-45ce-b976-ae433c0113db"/>
 				<box>
@@ -464,6 +453,19 @@
 					<font size="12" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{operator}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-12" x="317" y="27" width="56" height="14" uuid="afde74e4-c0cc-4fb3-ad11-db6c3f5d983f"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{invoicename}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
@@ -591,7 +593,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="黑体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
 				</textElement>
-				<text><![CDATA[Sub Total/总计:]]></text>
+				<text><![CDATA[Sub Total:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement key="staticText-8" style="Arial_Normal" x="372" y="46" width="91" height="14" uuid="be3369fc-f27b-431a-8e63-86d536b59539"/>
@@ -604,7 +606,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="黑体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
 				</textElement>
-				<text><![CDATA[Tax/税:]]></text>
+				<text><![CDATA[Tax:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement key="staticText-9" style="Arial_Normal" x="372" y="66" width="91" height="14" uuid="477fe158-4286-4c2d-b57f-1fb367ba6561"/>
@@ -617,7 +619,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="黑体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
 				</textElement>
-				<text><![CDATA[Total/总价:]]></text>
+				<text><![CDATA[Total:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement key="staticText-10" style="Arial_Normal" x="372" y="86" width="91" height="14" uuid="96c66306-375e-4969-abe6-ceb45423aa9a"/>
@@ -630,7 +632,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="黑体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
 				</textElement>
-				<text><![CDATA[Discount/优惠:]]></text>
+				<text><![CDATA[Discount:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement key="staticText-11" style="Arial_Normal" x="372" y="106" width="91" height="14" uuid="32d7befa-7af2-40de-af11-18f0bdcc9fb2"/>
@@ -643,7 +645,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="黑体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
 				</textElement>
-				<text><![CDATA[Balance/差额:]]></text>
+				<text><![CDATA[Balance:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement key="staticText-17" style="Arial_Normal" x="16" y="113" width="290" height="16" uuid="4b044558-426b-4c28-b223-679f675c9805"/>
@@ -785,19 +787,6 @@ orders.]]></text>
 				<textFieldExpression><![CDATA[$P{remark}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement key="staticText-26" style="Arial_Normal" x="343" y="149" width="60" height="21" uuid="b99c5e4e-ed59-428d-92de-5895351a4ab0"/>
-				<box>
-					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Right" verticalAlignment="Bottom">
-					<font fontName="黑体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
-				</textElement>
-				<text><![CDATA[Name/姓名:]]></text>
-			</staticText>
-			<staticText>
 				<reportElement key="staticText-27" style="Arial_Normal" x="312" y="181" width="91" height="21" uuid="504a7872-6d02-4c23-92a7-05df82fe939d"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -823,9 +812,6 @@ orders.]]></text>
 				</textElement>
 				<text><![CDATA[Date/日期:]]></text>
 			</staticText>
-			<line>
-				<reportElement key="line-27" style="Arial_Normal" x="411" y="170" width="144" height="1" uuid="196041ef-935d-4130-a34c-7cda36f1fc55"/>
-			</line>
 			<line>
 				<reportElement key="line-28" style="Arial_Normal" x="411" y="202" width="144" height="1" uuid="490a16f3-d385-4a6d-b655-890caa725229"/>
 			</line>

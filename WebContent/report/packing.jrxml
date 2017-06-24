@@ -4,7 +4,7 @@
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="89"/>
+	<property name="ireport.y" value="48"/>
 	<property name="ireport.layers" value="##Sun Jun 18 22:38:36 CST 2017\nlayer.1.name=Layer 1\nlayer.1.visible=true\nlayer.1.id=1\nlayer.0.name=Background\nlayer.0.visible=true\nlayer.0.id=0"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
@@ -59,6 +59,7 @@
 	<field name="if_rma" class="java.lang.String"/>
 	<field name="if_back_order" class="java.lang.Integer"/>
 	<field name="productid" class="java.lang.String"/>
+	<field name="unit_qty" class="java.lang.String"/>
 	<variable name="SUM_product_price_1" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[$F{product_price}]]></variableExpression>
 	</variable>
@@ -191,19 +192,19 @@
 				<text><![CDATA[Date:]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement key="rectangle-1" style="Arial_Normal" x="10" y="228" width="558" height="27" backcolor="#CCCCCC" uuid="8bc5a073-bb97-4761-b8c2-6ab368f9fc80"/>
+				<reportElement key="rectangle-1" style="Arial_Normal" x="10" y="230" width="558" height="27" backcolor="#CCCCCC" uuid="8bc5a073-bb97-4761-b8c2-6ab368f9fc80"/>
 			</rectangle>
 			<line>
-				<reportElement key="line-9" style="Arial_Normal" x="41" y="228" width="1" height="27" uuid="76d01890-00a3-4a7c-af33-818636be69dd"/>
+				<reportElement key="line-9" style="Arial_Normal" x="41" y="230" width="1" height="27" uuid="76d01890-00a3-4a7c-af33-818636be69dd"/>
 			</line>
 			<line>
-				<reportElement key="line-10" style="Arial_Normal" x="104" y="228" width="1" height="27" uuid="4202e4a6-cf13-40bf-801f-31a35fb8b79f"/>
+				<reportElement key="line-10" style="Arial_Normal" x="94" y="230" width="1" height="27" uuid="4202e4a6-cf13-40bf-801f-31a35fb8b79f"/>
 			</line>
 			<line>
-				<reportElement key="line-12" style="Arial_Normal" x="492" y="228" width="1" height="27" uuid="f245cc2d-a28b-4f7c-bc36-0c99976142e9"/>
+				<reportElement key="line-12" style="Arial_Normal" x="492" y="230" width="1" height="27" uuid="f245cc2d-a28b-4f7c-bc36-0c99976142e9"/>
 			</line>
 			<staticText>
-				<reportElement key="staticText-16" style="Arial_Normal" x="496" y="235" width="70" height="15" uuid="11af0bbb-37d5-4f60-b21c-3291d4857b4b"/>
+				<reportElement key="staticText-16" style="Arial_Normal" x="496" y="237" width="70" height="15" uuid="11af0bbb-37d5-4f60-b21c-3291d4857b4b"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -216,10 +217,10 @@
 				<text><![CDATA[REMARK]]></text>
 			</staticText>
 			<line>
-				<reportElement key="line-26" style="Arial_Normal" x="250" y="228" width="1" height="27" uuid="7331dc0b-64c2-412c-aede-23525b58f53a"/>
+				<reportElement key="line-26" style="Arial_Normal" x="250" y="230" width="1" height="27" uuid="7331dc0b-64c2-412c-aede-23525b58f53a"/>
 			</line>
 			<staticText>
-				<reportElement key="staticText-29" style="Arial_Normal" x="11" y="235" width="30" height="15" uuid="1afba122-afaa-4733-8b5f-15bfb9a361ae"/>
+				<reportElement key="staticText-29" style="Arial_Normal" x="11" y="237" width="30" height="15" uuid="1afba122-afaa-4733-8b5f-15bfb9a361ae"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -232,7 +233,7 @@
 				<text><![CDATA[Line]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText-30" style="Arial_Normal" x="43" y="235" width="60" height="15" uuid="9ce4706a-a9e4-4bb4-adc5-70f54bce60e0"/>
+				<reportElement key="staticText-30" style="Arial_Normal" x="43" y="237" width="50" height="15" uuid="9ce4706a-a9e4-4bb4-adc5-70f54bce60e0"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -245,7 +246,7 @@
 				<text><![CDATA[Item Id]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText-31" style="Arial_Normal" x="106" y="235" width="140" height="15" uuid="9ffeccfa-5e2e-4b83-ae0b-964e5258be38"/>
+				<reportElement key="staticText-31" style="Arial_Normal" x="95" y="237" width="151" height="15" uuid="9ffeccfa-5e2e-4b83-ae0b-964e5258be38"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -258,7 +259,7 @@
 				<text><![CDATA[Product Name]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText-32" style="Arial_Normal" x="252" y="235" width="40" height="15" uuid="0b993ce8-d556-4e7d-afc1-efac3077d92e"/>
+				<reportElement key="staticText-32" style="Arial_Normal" x="252" y="237" width="40" height="15" uuid="0b993ce8-d556-4e7d-afc1-efac3077d92e"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -271,10 +272,10 @@
 				<text><![CDATA[QTY.]]></text>
 			</staticText>
 			<line>
-				<reportElement key="line-31" style="Arial_Normal" x="292" y="229" width="1" height="27" uuid="bd520540-6683-42f7-a504-13099f2a09cb"/>
+				<reportElement key="line-31" style="Arial_Normal" x="292" y="231" width="1" height="27" uuid="bd520540-6683-42f7-a504-13099f2a09cb"/>
 			</line>
 			<staticText>
-				<reportElement key="staticText-33" style="Arial_Normal" x="409" y="235" width="80" height="15" uuid="0559840f-3681-4c9c-baac-5c42c877cd99"/>
+				<reportElement key="staticText-33" style="Arial_Normal" x="409" y="237" width="80" height="15" uuid="0559840f-3681-4c9c-baac-5c42c877cd99"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -548,7 +549,7 @@
 				<textFieldExpression><![CDATA[$P{send_type}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement key="staticText-32" style="Arial_Normal" x="364" y="235" width="40" height="15" uuid="72e16379-1110-4fa4-9328-9abdcbecd9a2"/>
+				<reportElement key="staticText-32" style="Arial_Normal" x="364" y="237" width="40" height="15" uuid="72e16379-1110-4fa4-9328-9abdcbecd9a2"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -561,13 +562,13 @@
 				<text><![CDATA[Boxes]]></text>
 			</staticText>
 			<line>
-				<reportElement key="line-31" style="Arial_Normal" x="406" y="229" width="1" height="27" uuid="1a40dd84-3fe0-42da-af2c-88f41a8e0da8"/>
+				<reportElement key="line-31" style="Arial_Normal" x="406" y="231" width="1" height="27" uuid="1a40dd84-3fe0-42da-af2c-88f41a8e0da8"/>
 			</line>
 			<line>
-				<reportElement key="line-31" style="Arial_Normal" x="362" y="229" width="1" height="27" uuid="ef8a5427-d495-4da6-bfe4-e5dacf06dbde"/>
+				<reportElement key="line-31" style="Arial_Normal" x="362" y="231" width="1" height="27" uuid="ef8a5427-d495-4da6-bfe4-e5dacf06dbde"/>
 			</line>
 			<staticText>
-				<reportElement key="staticText-32" style="Arial_Normal" x="298" y="236" width="60" height="15" uuid="3982b669-e8ec-4746-ac09-6a4ad401b56d"/>
+				<reportElement key="staticText-32" style="Arial_Normal" x="298" y="238" width="60" height="15" uuid="3982b669-e8ec-4746-ac09-6a4ad401b56d"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -587,7 +588,7 @@
 	<detail>
 		<band height="43" splitType="Stretch">
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" stretchType="RelativeToBandHeight" x="106" y="3" width="142" height="24" uuid="edf4a065-07ec-4715-8d6c-802a9521259b"/>
+				<reportElement key="textField" stretchType="RelativeToBandHeight" x="96" y="5" width="152" height="24" uuid="edf4a065-07ec-4715-8d6c-802a9521259b"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -600,7 +601,7 @@
 				<textFieldExpression><![CDATA[$F{product_name}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="false">
-				<reportElement key="textField" x="252" y="3" width="40" height="24" uuid="1851aca4-2823-41c6-8c64-4c1c4e40a72c"/>
+				<reportElement key="textField" x="252" y="5" width="40" height="24" uuid="1851aca4-2823-41c6-8c64-4c1c4e40a72c"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -611,25 +612,25 @@
 				<textFieldExpression><![CDATA[$F{product_num}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement key="line-3" style="Arial_Normal" positionType="Float" mode="Opaque" x="10" y="32" width="558" height="1" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="59b084c4-c185-4724-ad1b-4aaad1afddc2"/>
+				<reportElement key="line-3" style="Arial_Normal" positionType="Float" mode="Opaque" x="10" y="34" width="558" height="1" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="59b084c4-c185-4724-ad1b-4aaad1afddc2"/>
 			</line>
 			<line>
-				<reportElement key="line-4" style="Arial_Normal" x="10" y="-12" width="1" height="45" uuid="f36dfebc-f8dc-45dc-9bf4-42109279307c"/>
+				<reportElement key="line-4" style="Arial_Normal" x="10" y="-10" width="1" height="45" uuid="f36dfebc-f8dc-45dc-9bf4-42109279307c"/>
 			</line>
 			<line>
-				<reportElement key="line-5" style="Arial_Normal" x="567" y="-12" width="1" height="45" uuid="03b829ee-a2d6-4ebf-a073-0a483819714f"/>
+				<reportElement key="line-5" style="Arial_Normal" x="567" y="-10" width="1" height="45" uuid="03b829ee-a2d6-4ebf-a073-0a483819714f"/>
 			</line>
 			<line>
-				<reportElement key="line-7" style="Arial_Normal" x="104" y="-12" width="1" height="45" uuid="71c1884e-bd31-482c-bc66-5d6dc4c9768a"/>
+				<reportElement key="line-7" style="Arial_Normal" x="94" y="-7" width="1" height="42" uuid="71c1884e-bd31-482c-bc66-5d6dc4c9768a"/>
 			</line>
 			<line>
-				<reportElement key="line-8" style="Arial_Normal" x="41" y="-12" width="1" height="45" uuid="60b894b0-2abf-44c6-8bfe-618dd037ee6d"/>
+				<reportElement key="line-8" style="Arial_Normal" x="41" y="-10" width="1" height="45" uuid="60b894b0-2abf-44c6-8bfe-618dd037ee6d"/>
 			</line>
 			<line>
-				<reportElement key="line-13" style="Arial_Normal" x="492" y="-14" width="1" height="45" uuid="b200374a-55e6-401d-b33f-7132ce7dfd22"/>
+				<reportElement key="line-13" style="Arial_Normal" x="492" y="-12" width="1" height="45" uuid="b200374a-55e6-401d-b33f-7132ce7dfd22"/>
 			</line>
 			<textField isBlankWhenNull="false">
-				<reportElement key="textField" x="11" y="4" width="30" height="24" uuid="a41c61a8-fe9e-4657-8ba1-9d4536c81fb8"/>
+				<reportElement key="textField" x="11" y="6" width="30" height="24" uuid="a41c61a8-fe9e-4657-8ba1-9d4536c81fb8"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -640,13 +641,13 @@
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement key="line-25" style="Arial_Normal" x="250" y="-14" width="1" height="45" uuid="05d6a006-65ed-475e-9315-8120646384d3"/>
+				<reportElement key="line-25" style="Arial_Normal" x="250" y="-12" width="1" height="45" uuid="05d6a006-65ed-475e-9315-8120646384d3"/>
 			</line>
 			<line>
-				<reportElement key="line-30" style="Arial_Normal" x="292" y="-14" width="1" height="45" uuid="0956d5e8-99b2-47be-9197-73765435cdff"/>
+				<reportElement key="line-30" style="Arial_Normal" x="292" y="-12" width="1" height="45" uuid="0956d5e8-99b2-47be-9197-73765435cdff"/>
 			</line>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement key="textField-6" stretchType="RelativeToBandHeight" x="43" y="3" width="60" height="24" uuid="708b3d53-a42b-4a77-aad2-6b3519a0ead7"/>
+				<reportElement key="textField-6" stretchType="RelativeToBandHeight" x="43" y="5" width="50" height="24" uuid="708b3d53-a42b-4a77-aad2-6b3519a0ead7"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -659,11 +660,22 @@
 				<textFieldExpression><![CDATA[$F{productid}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement key="line-30" style="Arial_Normal" x="406" y="-14" width="1" height="45" uuid="125bd838-91d4-40f6-826d-574695d1c5a2"/>
+				<reportElement key="line-30" style="Arial_Normal" x="406" y="-12" width="1" height="45" uuid="125bd838-91d4-40f6-826d-574695d1c5a2"/>
 			</line>
 			<line>
-				<reportElement key="line-30" style="Arial_Normal" x="362" y="-14" width="1" height="45" uuid="abc643be-1c25-4a66-8daf-138cc7b29f7c"/>
+				<reportElement key="line-30" style="Arial_Normal" x="362" y="-12" width="1" height="45" uuid="abc643be-1c25-4a66-8daf-138cc7b29f7c"/>
 			</line>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="293" y="5" width="69" height="24" uuid="7e565719-3c54-429d-b9e2-963bd3df9af7"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{unit_qty}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>
