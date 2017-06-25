@@ -59,7 +59,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/log4j-1.2.14.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/migration.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-3.1.12-bin.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/poi-2.5.1-final-20040804.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/saaj.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/standard.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/struts.jar"/>
@@ -68,5 +67,11 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xml-apis.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xmlParserAPIs.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xmlsec.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/poi-ooxml-3.16.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/stax-api-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xmlbeans-2.6.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/poi-3.16.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-collections4-4.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/poi-ooxml-schemas-3.16.jar"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>

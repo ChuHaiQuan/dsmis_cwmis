@@ -2,6 +2,7 @@ package com.poweronce.action;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.util.ArrayList;
@@ -132,6 +133,25 @@ public class TSettingAction extends BaseDispatchAction {
         List<Map<String, String>> array = new ArrayList<Map<String, String>>();
         array.add(company);
         response.getWriter().println(ExtUtil.genExtListString(array, 1));
+        return null;
+    }
+    
+    /**
+     * 上传附件
+     * @param mapping
+     * @param form
+     * @param request
+     * @param response
+     * @return
+     * @throws IOException
+     */
+    public ActionForward uploadFile(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) 
+    		throws IOException{
+    	 TSettingForm settingForm = (TSettingForm) form;
+    	uploadFile(settingForm.getTheFile(), request.getRealPath("/")+"/images/product/", settingForm.getTheFile().getFileName());
+    	JSONObject successJson = JsonUtil.getSuccessJson();
+    	successJson.put("filePath", request.getRealPath("/")+"/images/product/"+settingForm.getTheFile().getFileName());
+    	response.getWriter().println(successJson.toJSONString());
         return null;
     }
 

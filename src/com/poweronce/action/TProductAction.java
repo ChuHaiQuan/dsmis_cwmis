@@ -1,5 +1,6 @@
 package com.poweronce.action;
 
+import java.io.File;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
@@ -29,6 +30,7 @@ import com.poweronce.model.PaginationSupport;
 import com.poweronce.service.Webservice;
 import com.poweronce.util.ExtUtil;
 import com.poweronce.util.JsonUtil;
+import com.poweronce.util.POIUtil;
 import com.poweronce.util.ProductUtil;
 import com.poweronce.validator.Validation;
 
@@ -278,6 +280,29 @@ public class TProductAction extends BaseDispatchAction {
         return mapping.findForward("get");
     }
 
+    /**
+     * 导入产品解析
+     * @param mapping
+     * @param form
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    public ActionForward importProduct(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+    	
+    	String path = request.getParameter("path");
+    	List<String[]> productList = POIUtil.readExcel(new File(path),1);
+    	if(productList!=null && productList.size()>0){
+    		for(String[] s : productList){
+    			//遍历数据,保存
+    		}
+    	}
+    	response.getWriter().println(JsonUtil.getSuccessJson());
+        return null;
+    }    
+    
     public ActionForward save(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         ActionErrors errors = new ActionErrors();

@@ -31,7 +31,9 @@ Ext.define('WJM.admin.BackUpModel', {
 							handler : this.onBackupClick
 						} ]
 			});
-			var grid3 = Ext.create('Ext.panel.Panel', {
+			
+			
+			var grid3 = Ext.create('Ext.form.Panel', {
 				title : '商品导入',
 				layout : {
 					type : 'vbox', // Arrange child items vertically
@@ -43,11 +45,42 @@ Ext.define('WJM.admin.BackUpModel', {
 						{
 							xtype : 'button', text : '<span style="font-size: 20px;">模板下载</span>', scale : 'large', margin : '30 0 0 0', scope : this,
 							handler : this.onDownTemplateClick
-						} ,
+						},{
+							xtype : 'label', html : '<span style="font-size: 20px;color: red;">产品数据导入</span>',margin : '30 0 0 0'
+						},
 						{
-							xtype : 'file', text : '<span style="font-size: 20px;">产品导入</span>', scale : 'large', margin : '30 0 0 0', scope : this,
-							handler : this.onImportClick
-						} ]
+							xtype : 'filefield', name : 'theFile',allowBlank : false,buttonText:"请选择文件", scale : 'large', margin : '10 0 0 0', scope : this,
+							change : function(){}
+						} ],
+						buttons: [{
+					        text: 'Upload',
+					        handler: function() {
+								var form = this.up('form').getForm();
+					            if(form.isValid()){
+					                form.submit({
+					                    url: 'setting.do?action=uploadFile',
+					                    waitMsg: 'Uploading...',
+					                    success: function(fp, o) {
+					                    	
+					                    	var path = o.result.filePath;
+					                    	Ext.Ajax.request({
+					                    	    url: location.context + '/product.do?action=importProduct',
+					                    	    params: {
+					                    	    	path: path
+					                    	    },
+					                    	    reader: {
+					                    	        type : 'json'
+					                    	    },
+					                    	    success: function(response,a,b){
+					                    	    	Ext.Msg.alert("导入成功！");
+					                    	    }
+					                    	});
+					                    	
+					                    }
+					                });
+					            }
+							}
+					    }]
 			});
 			var grid2 = Ext.create('WJM.admin.CompanyForm');
 			win = desktop.createWindow({
