@@ -46,7 +46,9 @@ Ext.define('WJM.model.TSale', {
 	}, {
 		name : 'rma_name'
 	}, {
-		name : 'tax'
+		name : 'tax', convert : function(v, record) {
+			return Ext.util.Format.number(v,'0.00');
+		}
 	}, {
 		name : 'payment'
 	}, {
@@ -94,6 +96,10 @@ Ext.define('WJM.model.TSale', {
 	}, {
 		name : 'balance', convert : function(v, record) {
 			return record.data.paid_price - record.data.all_price;
+		}
+	}, {
+		name : 'total', convert : function(v, record) {
+			return Ext.util.Format.number(record.data.sub_total*1 + record.data.tax*1,'0.00');
 		}
 	}, {
 		name : 'company_name'
@@ -293,4 +299,14 @@ Ext.create('Ext.data.Store', {
 	}, {
 		"value" : 1, "name" : "UnPaid/未付款"
 	} ]
+});
+
+Ext.create('Ext.data.Store', {
+	fields : [ 'value', 'name' ], storeId : 'RMAStatusType', data : [ {
+		"value" : -1, "name" : "All/所有"
+	}, {
+		"value" : 0, "name" : "partial RMA/部分退货"
+	}, {
+		"value" : 1, "name" : "FULL RMA/全部退货"
+	}]
 });

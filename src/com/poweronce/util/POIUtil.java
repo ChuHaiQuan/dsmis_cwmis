@@ -30,7 +30,7 @@ public class POIUtil {
 	 * @param file
 	 * @throws IOException 
 	 */
-	public static List<String[]> readExcel(File file,Integer startRow) throws IOException{
+	public static List<String[]> readExcel(File file) throws IOException{
 		//检查文件
 		checkFile(file);
     	//获得Workbook工作薄对象
@@ -46,7 +46,6 @@ public class POIUtil {
         		}
         		//获得当前sheet的开始行
         		int firstRowNum  = sheet.getFirstRowNum();
-        		if(startRow>0)firstRowNum=startRow;
         		//获得当前sheet的结束行
         		int lastRowNum = sheet.getLastRowNum();
         		//循环除了第一行的所有行

@@ -104,6 +104,9 @@ Ext.define('WJM.rma.RmaForm', {
 						}, {
 							xtype : 'combobox', fieldLabel : 'payment status/付款状态', labelWidth : 150, allowBlank : true, name : 'payment_status',
 							displayField : 'name',valueField : 'value', store : 'SalePayStatusType',
+						}, {
+							xtype : 'combobox', fieldLabel : 'RMA status/退货状态', labelWidth : 150, allowBlank : true, name : 'rma_status',
+							displayField : 'name',valueField : 'value', store : 'RMAStatusType',
 						} ]
 					},
 					{

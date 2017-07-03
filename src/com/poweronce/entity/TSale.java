@@ -25,7 +25,7 @@ public class TSale implements Serializable {
     private String rma_time;
     private String rma_code;
     private String rma_name;
-
+    private int rma_status;
     private double tax;
     private String payment;
     private double all_price;
@@ -63,7 +63,17 @@ public class TSale implements Serializable {
     private float invoiceTax;
 
     private int type;
-    /**
+    
+    
+    public int getRma_status() {
+		return rma_status;
+	}
+
+	public void setRma_status(int rma_status) {
+		this.rma_status = rma_status;
+	}
+
+	/**
      * 返还
      */
     private double refund;

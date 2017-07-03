@@ -19,6 +19,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.upload.FormFile;
+import org.json.simple.JSONObject;
 
 import com.poweronce.entity.TProduct;
 import com.poweronce.entity.TProduct.TProductVo;
@@ -293,13 +294,19 @@ public class TProductAction extends BaseDispatchAction {
             throws Exception {
     	
     	String path = request.getParameter("path");
-    	List<String[]> productList = POIUtil.readExcel(new File(path),1);
+    	List<String[]> productList = POIUtil.readExcel(new File(path));
     	if(productList!=null && productList.size()>0){
     		for(String[] s : productList){
+    			TProduct tProduct = new TProduct(s[0],
+    					s[1],s[2],s[3],Float.parseFloat(s[4]),
+    					Float.parseFloat(s[5]),Float.parseFloat(s[6]),Integer.parseInt(s[7]),Float.parseFloat(s[8]),s[9]);
+    			Webservice.insert(tProduct);
     			//遍历数据,保存
     		}
     	}
-    	response.getWriter().println(JsonUtil.getSuccessJson());
+    	JSONObject successJson = JsonUtil.getSuccessJson();
+    	successJson.put("msg", "成功导入产品数据【"+productList.size()+"】条!");
+    	response.getWriter().println(successJson.toJSONString());
         return null;
     }    
     

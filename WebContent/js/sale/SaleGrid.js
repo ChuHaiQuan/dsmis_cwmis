@@ -47,6 +47,8 @@ Ext.define('WJM.sale.SaleGrid', {
 		}, {
 			iconCls : 'search', text : '打印订单', scope : this, handler : this.onSalePrintClick
 		}, {
+			iconCls : 'search', text : '查看订单', scope : this, handler : this.onSaleDetailClick
+		}, {
 			iconCls : 'search', text : '清空', scope : this, handler : this.clearSearch
 		} ];
 
@@ -211,7 +213,7 @@ Ext.define('WJM.sale.SaleGrid', {
 						bbar : Ext.create('Ext.PagingToolbar', {
 							store : this.saleStore, displayInfo : true, displayMsg : '显示订单 {0} - {1} 总共 {2}', emptyMsg : "没有订单数据"
 						})
-					},
+					}/*,
 					{
 						region : 'south',
 						split : true,
@@ -239,7 +241,7 @@ Ext.define('WJM.sale.SaleGrid', {
 										fieldLabel : 'amount/总计', name : 'amount', readOnly : true, xtype : 'adnumberfield'
 									} ]
 								} ]
-					} ]
+					} */]
 		});
 		var store = Ext.data.StoreManager.lookup(this.saleStore);
 		store.on('load', this.onDataRefresh, this);
@@ -458,6 +460,24 @@ Ext.define('WJM.sale.SaleGrid', {
 			window.open(location.context + '/sale.do?action=rma_print&id=' + selection.getId(), "_blank");
 		} else {
 			Ext.Msg.alert('提示', '请选择RMA的订单');
+		}
+	},
+	
+	onSaleDetailClick: function() {
+		var selection = this.down('grid[title="订单"]').getView().getSelectionModel().getSelection()[0];
+		if (selection) {
+			var des = myDesktopApp.getDesktop();
+			var form = Ext.create('WJM.sale.SaleDetailInfo', {
+				record : selection
+			});
+			win = des.createWindow({
+				title : "查看订单商品", iconCls : 'icon-grid', animCollapse : false, width : 800, height : 550, constrainHeader : true, layout : 'fit',
+				items : [ form ]
+			});
+			win.show();
+			
+		} else {
+			Ext.Msg.alert('提示', '请选择订单');
 		}
 	},
 	/**

@@ -26,10 +26,8 @@ import net.sf.jasperreports.engine.JasperRunManager;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.json.JSONArray;
 
-import org.apache.bsf.util.Bean;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.poi.poifs.property.Parent;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -40,11 +38,11 @@ import org.krysalis.barcode4j.tools.UnitConv;
 
 import com.poweronce.entity.TBuyer;
 import com.poweronce.entity.TBuyer.TBuyerStatistics;
+import com.poweronce.entity.TCreditWarning;
 import com.poweronce.entity.TDamageReport;
 import com.poweronce.entity.TEmployee;
 import com.poweronce.entity.TProduct;
 import com.poweronce.entity.TProduct.TProdouctVo2;
-import com.poweronce.entity.TCreditWarning;
 import com.poweronce.entity.TSale;
 import com.poweronce.entity.TSaleHistory;
 import com.poweronce.entity.TSaleProduct;
@@ -67,6 +65,7 @@ public class TSaleAction extends BaseDispatchAction {
             throws Exception {
         String condition = " where 1=1 ";
         String paymentStatus = request.getParameter("payment_status");
+        String rmaStatus = request.getParameter("rma_status");
         TSaleForm tf = (TSaleForm) form;
         if (tf.getOper_id() != 0)
             condition += " and oper_id=" + tf.getOper_id();
@@ -116,6 +115,18 @@ public class TSaleAction extends BaseDispatchAction {
 			case "2":
 				condition += " and paid_price>0 and paid_price<all_price" ;				
 				break;
+			default:
+				break;
+			}
+        }
+        
+        if(StringUtils.isNotEmpty(rmaStatus)){
+        	switch (rmaStatus) {
+			case "0":
+				condition += " and rma_status=1";
+				break;
+			case "1":
+				condition += " and rma_status=2";
 			default:
 				break;
 			}
@@ -834,7 +845,7 @@ public class TSaleAction extends BaseDispatchAction {
             double subtotal_price = 0;
             double tax = 0;
             double discount = 0;
-
+            
             for (TSaleProductForm saleProduct : collection) {
                 // 更新rma产品
                 int rma_num = saleProduct.getReturn_damage_num() + saleProduct.getReturn_credit_num();
@@ -859,6 +870,19 @@ public class TSaleAction extends BaseDispatchAction {
                 Webservice.execute(TProduct.class, sql);
                 subtotal_price += saleProduct.getAgio_price() * rma_num;
             }
+            
+            int rmaStatus = 1;
+            //赋值是否完全退货字段
+            if(sf.getId()>0){
+            	List<TSaleProduct> list = Webservice.listAllBySql(TSaleProduct.class, 
+            			"SELECT SUM(product_num-rma_num) AS product_num  FROM tsaleproduct where sale_id="+sf.getId());
+            	if(list!=null && list.size()>0){
+            		TSaleProduct t = list.get(0);
+            		if(t.getProduct_num() == 0)
+            			rmaStatus = 2;
+            	}
+            	
+            }
 
             // 计算退货金额=货款总额+货款的税-优惠金额*退货所占整笔单子的百分比
             tax += subtotal_price * (s.getTax() / s.getSub_total());
@@ -876,6 +900,7 @@ public class TSaleAction extends BaseDispatchAction {
             // update the balance and total price
             Webservice.execute(TSale.class,
                     "update TSale set all_price=all_price-" + s.getAll_price() + ", sub_total=sub_total-" + s.getSub_total()
+                    		+ ", rma_status=" + rmaStatus
                             + ", paid_price=paid_price-" + s.getAll_price() + ",tax=tax-" + s.getTax() + ",discount=discount-" + discount
                             + ", refund=refund+" + s.getAll_price() + " where id=" + s.getId());
             if (s.getBuyer_id() > 0) {

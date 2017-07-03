@@ -43,6 +43,21 @@ public class TProduct implements Serializable {
     private float price_wholesale;
     private float price_company;
     
+    public TProduct(){}
+    public TProduct(String product_id,String code,String product_name,
+    		String product_name_cn,float price_wholesale,float price_simgle,float price_company,
+    		int num,float downLimit,String myMemo){
+    	this.product_id = product_id;
+    	this.Code = code;
+    	this.product_name = product_name;
+    	this.product_name_cn = product_name_cn;
+    	this.price_company = price_company;
+    	this.price_simgle = price_simgle;
+    	this.price_wholesale = price_wholesale;
+    	this.MyMemo = myMemo;
+    	this.num = num;
+    	this.DownLimit = downLimit;
+    }
     
     public float getPrice_company() {
 		return price_company;

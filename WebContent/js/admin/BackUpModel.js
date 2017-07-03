@@ -53,7 +53,7 @@ Ext.define('WJM.admin.BackUpModel', {
 							change : function(){}
 						} ],
 						buttons: [{
-					        text: 'Upload',
+					        text: '立即导入',
 					        handler: function() {
 								var form = this.up('form').getForm();
 					            if(form.isValid()){
@@ -61,7 +61,6 @@ Ext.define('WJM.admin.BackUpModel', {
 					                    url: 'setting.do?action=uploadFile',
 					                    waitMsg: 'Uploading...',
 					                    success: function(fp, o) {
-					                    	
 					                    	var path = o.result.filePath;
 					                    	Ext.Ajax.request({
 					                    	    url: location.context + '/product.do?action=importProduct',
@@ -72,7 +71,10 @@ Ext.define('WJM.admin.BackUpModel', {
 					                    	        type : 'json'
 					                    	    },
 					                    	    success: function(response,a,b){
-					                    	    	Ext.Msg.alert("导入成功！");
+					                    	    	Ext.Msg.alert("提示",JSON.parse(response.responseText).msg);
+					                    	    },
+					                    	    failure:function(response, opts){
+					                    	    	Ext.Msg.alert("提示","导入失败");
 					                    	    }
 					                    	});
 					                    	

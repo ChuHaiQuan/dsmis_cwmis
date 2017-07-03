@@ -46,7 +46,7 @@ public class TSettingAction extends BaseDispatchAction {
     public ActionForward downProductImportTemplate(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
             throws Exception {
     	String rpath = this.getServlet().getServletContext().getRealPath("/");
-    	super.download(mapping, form, request, response, rpath+"产品导入模板.xlsx");	
+    	super.download(mapping, form, request, response, "productTemplate.xlsx");	
         return null;
     }
 

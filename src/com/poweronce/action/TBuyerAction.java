@@ -25,6 +25,8 @@ public class TBuyerAction extends BaseDispatchAction {
         String lm = tf.getLinkMan();
         String m = tf.getMobile();
         String condition = " where 1=1";
+        if (tf.getId()>0)
+            condition += " and id = "+tf.getId();
         if (!StringUtils.isBlank(bc))
             condition += " and ShortName like '%" + bc + "%'";
         if (!StringUtils.isBlank(lm))
@@ -51,6 +53,13 @@ public class TBuyerAction extends BaseDispatchAction {
         long nCount = Webservice.getRowCount(TBuyer.class, condition);
         response.getWriter().println(ExtUtil.genExtListString(list, nCount));
         return null;
+    }
+    
+    
+    public ActionForward get(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response,Long id)
+            throws Exception {
+
+        return super.get(mapping, form, request, response, id);
     }
 
 }

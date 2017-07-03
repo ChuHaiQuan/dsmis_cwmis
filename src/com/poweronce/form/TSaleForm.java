@@ -76,8 +76,20 @@ public class TSaleForm extends BasePageForm {
     private String company_logo_pic_logo;
     private float invoiceTax;
     private int taxable;
+
+    private int rma_status;
     
     
+    
+    
+	public int getRma_status() {
+		return rma_status;
+	}
+
+	public void setRma_status(int rma_status) {
+		this.rma_status = rma_status;
+	}
+
 	public String getRefundMethod() {
 		return refundMethod;
 	}
