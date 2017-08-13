@@ -639,6 +639,11 @@ public class TSaleAction extends BaseDispatchAction {
             // +"Mobile:"+provider.getMobile()+"\r\n");
             
             DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+            if(sale.getTax() == sale.getDiscount()){
+            	sale.setSub_total(sale.getSub_total()+sale.getTax());
+            	sale.setTax(0);
+            	sale.setDiscount(0);
+            }
             parameters.put("oper_time", format.format(format.parse(sale.getOper_time())));
             parameters.put("invoice", sale.getInvoice());
             parameters.put("sale_number", sale.getSale_bill_code());
@@ -655,10 +660,11 @@ public class TSaleAction extends BaseDispatchAction {
             parameters.put("tax", String.valueOf(new Double(ObjectFormat.formatCurrency(sale.getTax(), "##0.00")).doubleValue()));
             parameters.put("total",
                     String.valueOf(new Double(ObjectFormat.formatCurrency(sale.getSub_total() + sale.getTax(), "##0.00")).doubleValue()));
-            parameters.put("deposite", String.valueOf(new Double(ObjectFormat.formatCurrency(sale.getDiscount(), "##0.00")).doubleValue()));
+            double deposit = new Double(ObjectFormat.formatCurrency(sale.getDiscount(), "##0.00")).doubleValue();
+            parameters.put("deposite", String.valueOf(deposit==0?0:-deposit));
             parameters.put("balance", String.valueOf(new Double(ObjectFormat.formatCurrency(sale.getAll_price() - sale.getPaid_price(),
                     "##0.00")).doubleValue()));
-            parameters.put("delivery_method", sale.getSend_type());
+            parameters.put("delivery_method", ("自取".equals(sale.getSend_type())?"pick up":"Delivery"));
             // pdf输出
             JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(sale_product_list);
             byte[] bytes = JasperRunManager.runReportToPdf(reportFile, parameters,ds);
@@ -874,10 +880,10 @@ public class TSaleAction extends BaseDispatchAction {
             int rmaStatus = 1;
             //赋值是否完全退货字段
             if(sf.getId()>0){
-            	List<TSaleProduct> list = Webservice.listAllBySql(TSaleProduct.class, 
+            	List<TRmaNumStatics> list = Webservice.listAllBySql(TRmaNumStatics.class, 
             			"SELECT SUM(product_num-rma_num) AS product_num  FROM tsaleproduct where sale_id="+sf.getId());
             	if(list!=null && list.size()>0){
-            		TSaleProduct t = list.get(0);
+            		TRmaNumStatics t = list.get(0);
             		if(t.getProduct_num() == 0)
             			rmaStatus = 2;
             	}

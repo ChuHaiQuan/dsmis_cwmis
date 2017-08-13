@@ -90,7 +90,7 @@ Ext.define('WJM.sale.SaleForm', {
                                             recod.set('agio_price', recod.get('old_wholesale'));
                                             recod.set('agio_price_old', recod.get('old_wholesale'));
                                            // recod.set('agio', (1-Ext.util.Format.number(recod.get('agio_price')/recod.get("price_simgle"),"0.000"))*100);
-                                            this.getForm().findField('confirm_code').setValue(text);
+//                                            this.getForm().findField('confirm_code').setValue(text);
 //                                        } else {
 //                                            Ext.Msg.alert('提示', records.error);
 //                                        }
@@ -745,7 +745,6 @@ Ext.define('WJM.sale.SaleForm', {
      */
     onSaleProductLoad: function (records, opt, successful) {
     	var that=this;
-    	
         if (successful) {
             var products = [];
             Ext.Array.each(records, function (item) {
@@ -924,7 +923,6 @@ Ext.define('WJM.sale.SaleForm', {
 			});
     		return false;
     	};   
-    	
     	
 //        var messageBox = Ext.Msg.prompt('approver', '请输入优惠确认人code:', function (btn, text) {
 //            if (btn == 'ok') {

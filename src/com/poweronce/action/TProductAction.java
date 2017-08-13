@@ -298,13 +298,13 @@ public class TProductAction extends BaseDispatchAction {
     	if(productList!=null && productList.size()>0){
     		for(String[] s : productList){
     			float quantity = (StringUtils.isEmpty(s[7])?0:Float.parseFloat(s[7]));
-    			float price_wholesale = (StringUtils.isEmpty(s[4])?0:Float.parseFloat(s[4]));
-    			float price_simgle =(StringUtils.isEmpty(s[5])?0:Float.parseFloat(s[5]));
+    			float price_wholesale = (StringUtils.isEmpty(s[4])?0:Float.parseFloat(s[5]));
+    			float price_simgle =(StringUtils.isEmpty(s[5])?0:Float.parseFloat(s[4]));
     			float downLimit = (StringUtils.isEmpty(s[8])?0:Float.parseFloat(s[8]));
-    			TProduct tProduct = new TProduct(s[0],
-    					s[1],s[2],s[3],price_wholesale,price_simgle,
+    			TProduct tProduct = new TProduct(s[1],
+    					s[0],s[2],s[3],price_wholesale,price_simgle,
     					(StringUtils.isEmpty(s[6])?0:Float.parseFloat(s[6])),
-    					Float.floatToIntBits(quantity),downLimit,s[9]);
+    					new Float(quantity).intValue(),downLimit,s[9]);
     			Webservice.insert(tProduct);
     			//遍历数据,保存
     		}

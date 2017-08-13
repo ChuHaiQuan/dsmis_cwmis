@@ -64,6 +64,7 @@ Ext.define('WJM.admin.BackUpModel', {
 					                    	var path = o.result.filePath;
 					                    	Ext.Ajax.request({
 					                    	    url: location.context + '/product.do?action=importProduct',
+					                    	    timeout: 100000000,
 					                    	    params: {
 					                    	    	path: path
 					                    	    },

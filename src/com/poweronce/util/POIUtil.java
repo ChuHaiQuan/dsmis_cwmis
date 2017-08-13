@@ -52,14 +52,14 @@ public class POIUtil {
         		for(int rowNum = firstRowNum+1;rowNum <= lastRowNum;rowNum++){
         			//获得当前行
         			Row row = sheet.getRow(rowNum);
-        			if(row == null){
+        			if(row == null || isRowEmpty(row)){
         				continue;
         			}
         			//获得当前行的开始列
         			int firstCellNum = row.getFirstCellNum();
         			//获得当前行的列数
-        			int lastCellNum = row.getPhysicalNumberOfCells();
-        			String[] cells = new String[row.getPhysicalNumberOfCells()];
+        			int lastCellNum = 10;  //row.getPhysicalNumberOfCells()
+        			String[] cells = new String[10];//row.getPhysicalNumberOfCells()
         			//循环当前行
         			for(int cellNum = firstCellNum; cellNum < lastCellNum;cellNum++){
         				Cell cell = row.getCell(cellNum);
@@ -72,6 +72,15 @@ public class POIUtil {
     	}
 		return list;
     }
+	
+	public static boolean isRowEmpty(Row row) {
+		   for (int c = row.getFirstCellNum(); c < row.getLastCellNum(); c++) {
+		       Cell cell = row.getCell(c);
+		       if (cell != null && cell.getCellType() != Cell.CELL_TYPE_BLANK)
+	           return false;
+		   }
+		   return true;
+	}
 	public static void checkFile(File file) throws IOException{
 		if(!file.exists()) throw new FileNotFoundException("文件不存在！");
 		//判断文件是否存在
