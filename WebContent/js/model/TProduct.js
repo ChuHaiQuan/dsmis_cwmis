@@ -81,6 +81,8 @@ Ext.define('WJM.model.TProduct', {
 		name : 'agio_price'
 	},{
 		name:'price_company'
+	},{
+		name:'tracking_id'
 	}],
 
 	validations : [ {

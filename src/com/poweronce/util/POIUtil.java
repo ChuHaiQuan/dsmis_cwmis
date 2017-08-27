@@ -58,8 +58,8 @@ public class POIUtil {
         			//获得当前行的开始列
         			int firstCellNum = row.getFirstCellNum();
         			//获得当前行的列数
-        			int lastCellNum = 10;  //row.getPhysicalNumberOfCells()
-        			String[] cells = new String[10];//row.getPhysicalNumberOfCells()
+        			int lastCellNum = 11;  //row.getPhysicalNumberOfCells()
+        			String[] cells = new String[11];//row.getPhysicalNumberOfCells()
         			//循环当前行
         			for(int cellNum = firstCellNum; cellNum < lastCellNum;cellNum++){
         				Cell cell = row.getCell(cellNum);

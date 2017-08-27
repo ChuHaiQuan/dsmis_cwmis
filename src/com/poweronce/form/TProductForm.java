@@ -51,9 +51,19 @@ public class TProductForm extends BasePageForm {
     private float price_wholesale;
 
     private float price_company;
+    private String tracking_id;
     
     
-    public float getPrice_company() {
+    
+    public String getTracking_id() {
+		return tracking_id;
+	}
+
+	public void setTracking_id(String tracking_id) {
+		this.tracking_id = tracking_id;
+	}
+
+	public float getPrice_company() {
 		return price_company;
 	}
 

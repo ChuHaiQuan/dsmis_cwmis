@@ -42,11 +42,13 @@ public class TProduct implements Serializable {
     private String product_name_cn;
     private float price_wholesale;
     private float price_company;
+    private String tracking_id;
+    
     
     public TProduct(){}
     public TProduct(String product_id,String code,String product_name,
     		String product_name_cn,float price_wholesale,float price_simgle,float price_company,
-    		int num,float downLimit,String myMemo){
+    		int num,float downLimit,String myMemo,String trackingId){
     	this.product_id = product_id;
     	this.Code = code;
     	this.product_name = product_name;
@@ -57,9 +59,19 @@ public class TProduct implements Serializable {
     	this.MyMemo = myMemo;
     	this.num = num;
     	this.DownLimit = downLimit;
+    	this.tracking_id = trackingId;
     }
     
-    public float getPrice_company() {
+    
+    
+    
+    public String getTracking_id() {
+		return tracking_id;
+	}
+	public void setTracking_id(String tracking_id) {
+		this.tracking_id = tracking_id;
+	}
+	public float getPrice_company() {
 		return price_company;
 	}
 
@@ -360,9 +372,20 @@ public class TProduct implements Serializable {
         private String provider_id;
         private float price_wholesale;
         private float price_company;
+        private String tracking_id;
         
         
-        public float getPrice_company() {
+        
+        
+        public String getTracking_id() {
+			return tracking_id;
+		}
+
+		public void setTracking_id(String tracking_id) {
+			this.tracking_id = tracking_id;
+		}
+
+		public float getPrice_company() {
     		return price_company;
     	}
 

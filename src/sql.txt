@@ -1,0 +1,5 @@
+ALTER TABLE `tproduct`
+ADD COLUMN `tracking_id`  varchar(250) NULL AFTER `price_company`;
+
+ALTER TABLE `tsaleproduct`
+ADD COLUMN `tracking_id`  varchar(250) NULL AFTER `unit_qty`;

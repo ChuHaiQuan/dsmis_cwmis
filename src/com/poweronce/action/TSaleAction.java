@@ -253,10 +253,10 @@ public class TSaleAction extends BaseDispatchAction {
         List sale_product_list = Webservice.listAll(TSaleProduct.class, " where sale_id=" + sale_id, "");
         session.setAttribute("sale", sale);
         session.setAttribute("sale_product_list", sale_product_list);
-        if (sale.getIf_cashed() == 0 && StringUtils.isEmpty(notNeedPaid)) {
-            response.sendRedirect("/");
-            return null;
-        }
+//        if (sale.getIf_cashed() == 0 && StringUtils.isEmpty(notNeedPaid)) {
+//            response.sendRedirect("/");
+//            return null;
+//        }
         return mapping.findForward("packing_print");
     }
 
@@ -281,7 +281,13 @@ public class TSaleAction extends BaseDispatchAction {
             if(sale_product_list!=null && sale_product_list.size()>0){
             	for(TSaleProduct t : sale_product_list){
             		TProduct p = Webservice.get(TProduct.class, t.getProduct_id());
-            		if(p!=null)t.setUnit_qty(p.getProduct_name_cn());
+            		if(p!=null){
+            			t.setUnit_qty(p.getProduct_name_cn());
+            			t.setTracking_id(p.getTracking_id());
+            		}else{
+            			t.setUnit_qty("");
+            			t.setTracking_id("");
+            		}
             	}
             }
             TSale sale = (TSale) session.getAttribute("sale");

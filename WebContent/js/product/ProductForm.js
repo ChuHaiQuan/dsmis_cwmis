@@ -137,6 +137,8 @@ Ext.define('WJM.product.ProductForm', {
 						name : 'downLimit', fieldLabel : 'min Stock/最小库存', allowBlank : true, xtype : 'numberfield', allowDecimals : false,
 						minValue : 0
 					}, {
+						name : 'tracking_id', fieldLabel : 'tracking id/库存位置', xtype : 'textareafield', allowBlank : true
+					}, {
 						name : 'myMemo', fieldLabel : 'remark/备注', xtype : 'textareafield', allowBlank : true
 					} ],
 

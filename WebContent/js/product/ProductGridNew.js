@@ -25,7 +25,7 @@ Ext.define('WJM.product.ProductGridNew', {
 		if (this.editAble) {
 			this.editTopBar = Ext.create('Ext.toolbar.Toolbar', {
 				items : [ {
-					iconCls : 'search', text : '搜索', scope : this, handler : this.onSearchClick
+					iconCls : 'search', text : '搜索11', scope : this, handler : this.onSearchClick
 				}, {
 					iconCls : 'add', text : '添加', scope : this, handler : this.onAddClick
 				}, {

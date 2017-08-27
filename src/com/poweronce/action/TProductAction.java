@@ -91,7 +91,7 @@ public class TProductAction extends BaseDispatchAction {
         if(StringUtils.isNotEmpty(vendor)){
         	condition += " and TProduct_vendor.vendor_name like '%" + vendor.trim() + "%'";
         }
-        String sql = "select TProduct.price_company,TProduct.price_wholesale,TProduct.id,TProduct.product_id,TProduct.`Code`,TProduct.product_name,TProduct.Spec,TProduct.Unit,TProduct.UpLimit,TProduct.DownLimit,TProduct.Price_simgle,TProduct.Drawing,TProduct.HelpName,TProduct.MyMemo,TProduct.Drawing2,TProduct.Drawing3,TProduct.Drawing4,TProduct.Drawing5,TProduct.Drawing6,TProduct.Drawing7,TProduct.Drawing8,TProduct.Drawing9,TProduct.Sreserve1,TProduct.Sreserve2,TProduct.Sreserve3,TProduct.freserve1,TProduct.freserve2,TProduct.freserve3,TProduct.product_type,TProduct.num,TProduct.product_name_cn,TProduct.size,TProduct.weight,TProduct_vendor.vendor_id provider_id,TProduct_vendor.price Price_income,TProduct_vendor.vendor_name vendortName from TProduct left join TProduct_vendor on TProduct.id=TProduct_vendor.product_id and TProduct_vendor.useDefault=1 "
+        String sql = "select TProduct.tracking_id,TProduct.price_company,TProduct.price_wholesale,TProduct.id,TProduct.product_id,TProduct.`Code`,TProduct.product_name,TProduct.Spec,TProduct.Unit,TProduct.UpLimit,TProduct.DownLimit,TProduct.Price_simgle,TProduct.Drawing,TProduct.HelpName,TProduct.MyMemo,TProduct.Drawing2,TProduct.Drawing3,TProduct.Drawing4,TProduct.Drawing5,TProduct.Drawing6,TProduct.Drawing7,TProduct.Drawing8,TProduct.Drawing9,TProduct.Sreserve1,TProduct.Sreserve2,TProduct.Sreserve3,TProduct.freserve1,TProduct.freserve2,TProduct.freserve3,TProduct.product_type,TProduct.num,TProduct.product_name_cn,TProduct.size,TProduct.weight,TProduct_vendor.vendor_id provider_id,TProduct_vendor.price Price_income,TProduct_vendor.vendor_name vendortName from TProduct left join TProduct_vendor on TProduct.id=TProduct_vendor.product_id and TProduct_vendor.useDefault=1 "
                 + condition +orderBy+ " limit " + iPageSize + " OFFSET " + offset;
         List list = Webservice.listAllBySql(TProductVo.class, sql);
         response.getWriter().println(ExtUtil.genExtListString(list, nCount));
@@ -120,7 +120,7 @@ public class TProductAction extends BaseDispatchAction {
             condition += " order by abs(length(TProduct.product_id)-length('" + pq + "'))";
 
             long nCount = Webservice.getRowCount(TProduct.class, condition);
-            String sql = "select TProduct.price_company,TProduct.price_wholesale,TProduct.id,TProduct.product_id,TProduct.`Code`,TProduct.product_name,TProduct.Spec,TProduct.Unit,TProduct.UpLimit,TProduct.DownLimit,TProduct.Price_simgle,TProduct.Drawing,TProduct.HelpName,TProduct.MyMemo,TProduct.Drawing2,TProduct.Drawing3,TProduct.Drawing4,TProduct.Drawing5,TProduct.Drawing6,TProduct.Drawing7,TProduct.Drawing8,TProduct.Drawing9,TProduct.Sreserve1,TProduct.Sreserve2,TProduct.Sreserve3,TProduct.freserve1,TProduct.freserve2,TProduct.freserve3,TProduct.product_type,TProduct.num,TProduct.product_name_cn,TProduct.size,TProduct.weight,TProduct_vendor.vendor_id provider_id,TProduct_vendor.price Price_income,TProduct_vendor.vendor_name vendortName from TProduct left join TProduct_vendor on  TProduct.id=TProduct_vendor.product_id  and TProduct_vendor.useDefault=1 "
+            String sql = "select TProduct.tracking_id,TProduct.price_company,TProduct.price_wholesale,TProduct.id,TProduct.product_id,TProduct.`Code`,TProduct.product_name,TProduct.Spec,TProduct.Unit,TProduct.UpLimit,TProduct.DownLimit,TProduct.Price_simgle,TProduct.Drawing,TProduct.HelpName,TProduct.MyMemo,TProduct.Drawing2,TProduct.Drawing3,TProduct.Drawing4,TProduct.Drawing5,TProduct.Drawing6,TProduct.Drawing7,TProduct.Drawing8,TProduct.Drawing9,TProduct.Sreserve1,TProduct.Sreserve2,TProduct.Sreserve3,TProduct.freserve1,TProduct.freserve2,TProduct.freserve3,TProduct.product_type,TProduct.num,TProduct.product_name_cn,TProduct.size,TProduct.weight,TProduct_vendor.vendor_id provider_id,TProduct_vendor.price Price_income,TProduct_vendor.vendor_name vendortName from TProduct left join TProduct_vendor on  TProduct.id=TProduct_vendor.product_id  and TProduct_vendor.useDefault=1 "
                     + condition + " limit 0, 50";
             List list = Webservice.listAllBySql(TProductVo.class, sql);
             response.getWriter().println(ExtUtil.genExtListString(list, nCount));
@@ -304,7 +304,7 @@ public class TProductAction extends BaseDispatchAction {
     			TProduct tProduct = new TProduct(s[1],
     					s[0],s[2],s[3],price_wholesale,price_simgle,
     					(StringUtils.isEmpty(s[6])?0:Float.parseFloat(s[6])),
-    					new Float(quantity).intValue(),downLimit,s[9]);
+    					new Float(quantity).intValue(),downLimit,s[10],s[9]);
     			Webservice.insert(tProduct);
     			//遍历数据,保存
     		}

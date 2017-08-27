@@ -202,11 +202,11 @@ Ext.define('WJM.cash.widget.SaleCashGrid', {
 	onPackePrintClick : function() {
 		var selection = this.down('grid[title="订单"]').getView().getSelectionModel().getSelection()[0];
 		if (selection) {
-			if (selection.get('if_cashed') == 0) {
-				Ext.Msg.alert('提示', '此订单未完全收款，无法打印出货单');
-			} else {
+//			if (selection.get('if_cashed') == 0) {
+//				Ext.Msg.alert('提示', '此订单未完全收款，无法打印出货单');
+//			} else {
 				window.open(location.context + '/sale.do?action=packing_print&id=' + selection.getId(), "_blank");
-			}
+//			}
 		} else {
 			Ext.Msg.alert('提示', '请选择订单');
 		}

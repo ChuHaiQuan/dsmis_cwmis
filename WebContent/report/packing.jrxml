@@ -4,7 +4,7 @@
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="48"/>
+	<property name="ireport.y" value="187"/>
 	<property name="ireport.layers" value="##Sun Jun 18 22:38:36 CST 2017\nlayer.1.name=Layer 1\nlayer.1.visible=true\nlayer.1.id=1\nlayer.0.name=Background\nlayer.0.visible=true\nlayer.0.id=0"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
@@ -60,6 +60,7 @@
 	<field name="if_back_order" class="java.lang.Integer"/>
 	<field name="productid" class="java.lang.String"/>
 	<field name="unit_qty" class="java.lang.String"/>
+	<field name="tracking_id" class="java.lang.String"/>
 	<variable name="SUM_product_price_1" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[$F{product_price}]]></variableExpression>
 	</variable>
@@ -666,7 +667,7 @@
 				<reportElement key="line-30" style="Arial_Normal" x="362" y="-12" width="1" height="45" uuid="abc643be-1c25-4a66-8daf-138cc7b29f7c"/>
 			</line>
 			<textField isBlankWhenNull="false">
-				<reportElement key="textField" x="293" y="5" width="69" height="24" uuid="7e565719-3c54-429d-b9e2-963bd3df9af7"/>
+				<reportElement key="textField" x="293" y="6" width="69" height="24" uuid="7e565719-3c54-429d-b9e2-963bd3df9af7"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -675,6 +676,17 @@
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{unit_qty}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="409" y="6" width="82" height="24" uuid="d9825e7e-315d-473e-9b87-19ef3536e63a"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tracking_id}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

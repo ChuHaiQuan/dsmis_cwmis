@@ -32,9 +32,18 @@ public class TSaleProduct implements Serializable {
     private String back_order_time;
     private String back_order_code;
     private String unit_qty;
+    private String tracking_id;
     
-    
-    public String getUnit_qty() {
+
+	public String getTracking_id() {
+		return tracking_id;
+	}
+
+	public void setTracking_id(String tracking_id) {
+		this.tracking_id = tracking_id;
+	}
+
+	public String getUnit_qty() {
 		return unit_qty;
 	}
 

@@ -74,6 +74,8 @@ Ext.define('WJM.product.ProductGrid', {
 				text : "quantity/数量", dataIndex : 'num', sortable : true
 			}, {
 				text : "vendor/供货商", dataIndex : 'vendortName', sortable : true
+			} , {
+				text : "Tracking id/库存位置", dataIndex : 'tracking_id', sortable : true
 			} ];
 		} else {
 			_fileds = [ {
@@ -102,7 +104,9 @@ Ext.define('WJM.product.ProductGrid', {
 				text : "quantity/数量", dataIndex : 'num', sortable : true
 			}, {
 				text : "vendor/供货商", dataIndex : 'vendortName', sortable : true
-			} ];
+			}, {
+				text : "Tracking id/库存位置", dataIndex : 'tracking_id', sortable : true
+			}  ];
 		}
 		Ext.apply(this, {
 			autoScroll : true,
