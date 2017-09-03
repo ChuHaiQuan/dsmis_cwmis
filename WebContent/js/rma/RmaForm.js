@@ -150,7 +150,11 @@ Ext.define('WJM.rma.RmaForm', {
 									name : 'if_cashed', xtype : 'hiddenfield'
 								},
 								{
-									store : 'SaleRmaStore', anchor : '100% -170', minHeight : 100, region : 'south', disableSelection : false,
+									proxy:{
+										extraParams : {
+											type : -1
+										},
+									},store : 'SaleRmaStore', anchor : '100% -170', minHeight : 100, region : 'south', disableSelection : false,
 									loadMask : true, xtype : 'gridpanel', columns : _fileds1, bbar : Ext.create('Ext.PagingToolbar', {
 										store : 'SaleRmaStore', displayInfo : true, displayMsg : '显示 订单 {0} - {1} 总共 {2}', emptyMsg : "没有订单数据"
 									}), listeners : {

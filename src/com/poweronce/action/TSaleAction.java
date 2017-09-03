@@ -98,6 +98,7 @@ public class TSaleAction extends BaseDispatchAction {
         if(StringUtils.isNotEmpty(tf.getOper_name())){
         	condition += " and oper_name = '" + tf.getOper_name()+"'";
         }
+        if(tf.getType()>=0)
         condition += " and type = " + tf.getType();
         
         if(StringUtils.isNotEmpty(tf.getProduct_name())){

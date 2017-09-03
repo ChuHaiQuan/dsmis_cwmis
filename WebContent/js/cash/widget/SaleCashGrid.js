@@ -218,6 +218,12 @@ Ext.define('WJM.cash.widget.SaleCashGrid', {
 		this.customer = recode;
 		var store = Ext.data.StoreManager.lookup(this.saleStore);
 		store.getProxy().setExtraParam('buyer_id', recode.getId());
-		store.load();
+		store.getProxy().setExtraParam('type', -1);
+		
+		store.load({
+			callback:function(){
+				store.getProxy().setExtraParam('type', 0);
+			}
+		});
 	}
 });

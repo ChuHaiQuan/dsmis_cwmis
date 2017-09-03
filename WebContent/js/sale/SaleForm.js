@@ -705,6 +705,7 @@ Ext.define('WJM.sale.SaleForm', {
         this.getForm().findField('tax').setValue(total * window.invoiceTax);
         this.getForm().findField('sub_total').setValue(total - total * discountpercent);
         this.getForm().findField('discount').setValue(total * discountpercent);
+        debugger;
         this.getForm().findField('all_price').setValue(
             total * (1 + window.invoiceTax - discountpercent));
     },

@@ -161,6 +161,8 @@ Ext.define('WJM.model.SaleStore', {
 	model : 'WJM.model.TSale',
 	pageSize : 25,
 	storeId : 'SaleStore',
+	callback:function(){
+	},
 	proxy : {
 		batchActions : true,
 		type : 'ajax',
@@ -196,7 +198,44 @@ Ext.define('WJM.model.SaleStore', {
 
 Ext.create('WJM.model.SaleStore', {});
 Ext.create('WJM.model.SaleStore', {
-	storeId : 'SaleRmaStore'
+		extend : 'Ext.data.Store',
+		autoLoad : false,
+		autoSync : true,
+		model : 'WJM.model.TSale',
+		pageSize : 25,
+		storeId : 'SaleRmaStore',
+		proxy : {
+			batchActions : true,
+			type : 'ajax',
+			pageParam : 'currpage',
+			limitParam : 'pagesize',
+			extraParams : {
+				type : -1
+			},
+			api : {
+				create : location.context + '/sale.do?action=save', read : location.context + '/sale.do?action=list',
+				update : location.context + '/sale.do?action=update', destroy : location.context + '/sale.do?action=del'
+			},
+
+			writer : Ext.create('WJM.FormWriter'),
+
+			actionMethods : {
+				create : "POST", read : "POST", update : "POST", destroy : "POST"
+			},
+
+			reader : {
+				root : 'listData', totalProperty : 'total', messageProperty : 'msg'
+			},
+
+			listeners : {
+				exception : function(proxy, response, operation) {
+					Ext.MessageBox.show({
+						title : '操作失败', msg : operation.getError() || '操作失败', icon : Ext.MessageBox.ERROR, buttons : Ext.Msg.OK
+					});
+				}
+			}
+		}
+
 });
 
 Ext.create('WJM.model.SaleStore', {
@@ -272,8 +311,10 @@ Ext.create('Ext.data.Store', {
 	}, {
 		"value" : "Check", "name" : "Check/支票"
 	}, {
+		"value" : "Credit Card", "name" : "Credit Card/信用卡"
+	}, {
 		"value" : "Deposit", "name" : "Deposit/预付款"
-	} /*, {
+	}/*, {
 		"value" : "Credit", "name" : "Credit/信用账户"
 	}*/]
 });

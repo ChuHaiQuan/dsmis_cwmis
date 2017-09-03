@@ -820,7 +820,7 @@ No returns/refunds/exchanges on special orders or custom-made orders.]]></text>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Arial" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
 				</textElement>
-				<text><![CDATA[Deposit:]]></text>
+				<text><![CDATA[Discount:]]></text>
 			</staticText>
 			<rectangle>
 				<reportElement key="rectangle-2" style="Arial_Normal" x="440" y="22" width="98" height="60" uuid="ada4939a-c1b0-4991-8409-1466f5ef0dd7"/>
