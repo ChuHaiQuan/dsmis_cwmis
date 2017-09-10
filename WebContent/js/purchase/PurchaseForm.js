@@ -41,8 +41,8 @@ Ext.define('WJM.purchase.PurchaseForm', {
 						}
 					}
 				}, {
-					text : "quantity/数量", dataIndex : 'num', sortable : true, xtype : 'numbercolumn', format : '0,000', editor : {
-						xtype : 'numberfield', allowBlank : false, allowDecimals : false, minValue : 0
+					text : "quantity/数量", dataIndex : 'num', sortable : true, xtype : 'numbercolumn', format : '0,000.00', editor : {
+						xtype : 'numberfield', allowBlank : false,decimalPrecision:2, allowDecimals : true, minValue : 0
 					}
 				}, {
 					text : "sub total/小计", dataIndex : 'total', sortable : true, xtype : 'numbercolumn', format : '$0.00'

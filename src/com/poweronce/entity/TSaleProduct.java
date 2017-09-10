@@ -18,7 +18,7 @@ public class TSaleProduct implements Serializable {
     private double product_price;
     private double agio;
     private double agio_price;
-    private int product_num;
+    private float product_num;
     private String sale_time;
     private int rma_id;
     private String rma_time;
@@ -107,11 +107,11 @@ public class TSaleProduct implements Serializable {
         this.product_name = product_name;
     }
 
-    public int getProduct_num() {
+    public float getProduct_num() {
         return product_num;
     }
 
-    public void setProduct_num(int product_num) {
+    public void setProduct_num(float product_num) {
         this.product_num = product_num;
     }
 

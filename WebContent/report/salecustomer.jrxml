@@ -4,7 +4,7 @@
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="83"/>
+	<property name="ireport.y" value="0"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
 	<import value="net.sf.jasperreports.engine.data.*"/>
@@ -49,7 +49,7 @@
 	<field name="product_name" class="java.lang.String"/>
 	<field name="product_price" class="java.lang.Double"/>
 	<field name="agio_price" class="java.lang.Double"/>
-	<field name="product_num" class="java.lang.Integer"/>
+	<field name="product_num" class="java.lang.Float"/>
 	<field name="sale_time" class="java.sql.Timestamp"/>
 	<field name="agio" class="java.lang.Double"/>
 	<field name="rma_id" class="java.lang.Integer"/>
@@ -62,7 +62,7 @@
 		<variableExpression><![CDATA[$F{product_price}]]></variableExpression>
 	</variable>
 	<variable name="AMOUNT" class="java.lang.Double" resetType="Column" incrementType="Column">
-		<variableExpression><![CDATA[new Double($F{product_num}.intValue()*$F{agio_price}.doubleValue())]]></variableExpression>
+		<variableExpression><![CDATA[new Double($F{product_num}.floatValue()*$F{agio_price}.doubleValue())]]></variableExpression>
 	</variable>
 	<background>
 		<band splitType="Prevent"/>

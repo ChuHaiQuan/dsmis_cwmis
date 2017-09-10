@@ -43,7 +43,7 @@ public class TProductForm extends BasePageForm {
     private int freserve1;
     private int freserve2;
     private int freserve3;
-    private int num;
+    private float num;
     private FormFile theFile;
 
     private String productProviderJson;
@@ -286,11 +286,11 @@ public class TProductForm extends BasePageForm {
 	this.theFile = theFile;
     }
 
-    public int getNum() {
+    public float getNum() {
 	return num;
     }
 
-    public void setNum(int num) {
+    public void setNum(float num) {
 	this.num = num;
     }
 

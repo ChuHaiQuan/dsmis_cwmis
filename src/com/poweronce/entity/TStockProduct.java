@@ -13,7 +13,7 @@ public class TStockProduct implements Serializable {
     private String product_code;
     private String product_name;
     private float product_price;
-    private int product_num;
+    private float product_num;
     private String stock_time;
     private long provider_id;
     private String provider_name;
@@ -42,11 +42,11 @@ public class TStockProduct implements Serializable {
         this.product_name = product_name;
     }
 
-    public int getProduct_num() {
+    public float getProduct_num() {
         return product_num;
     }
 
-    public void setProduct_num(int product_num) {
+    public void setProduct_num(float product_num) {
         this.product_num = product_num;
     }
 

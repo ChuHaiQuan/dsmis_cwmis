@@ -38,7 +38,7 @@ public class TProduct implements Serializable {
     private int freserve2;
     private int freserve3;
     private String product_type;
-    private int num;
+    private float num;
     private String product_name_cn;
     private float price_wholesale;
     private float price_company;
@@ -48,7 +48,7 @@ public class TProduct implements Serializable {
     public TProduct(){}
     public TProduct(String product_id,String code,String product_name,
     		String product_name_cn,float price_wholesale,float price_simgle,float price_company,
-    		int num,float downLimit,String myMemo,String trackingId){
+    		float num,float downLimit,String myMemo,String trackingId){
     	this.product_id = product_id;
     	this.Code = code;
     	this.product_name = product_name;
@@ -279,11 +279,11 @@ public class TProduct implements Serializable {
         UpLimit = upLimit;
     }
 
-    public int getNum() {
+    public float getNum() {
         return num;
     }
 
-    public void setNum(int num) {
+    public void setNum(float num) {
         this.num = num;
     }
 
@@ -366,7 +366,7 @@ public class TProduct implements Serializable {
         private int freserve2;
         private int freserve3;
         private String product_type;
-        private int num;
+        private float num;
         private String product_name_cn;
         private String vendortName;
         private String provider_id;
@@ -648,11 +648,11 @@ public class TProduct implements Serializable {
             this.product_type = product_type;
         }
 
-        public int getNum() {
+        public float getNum() {
             return num;
         }
 
-        public void setNum(int num) {
+        public void setNum(float num) {
             this.num = num;
         }
 

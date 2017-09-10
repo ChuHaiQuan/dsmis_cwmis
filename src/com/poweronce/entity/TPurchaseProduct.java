@@ -13,13 +13,13 @@ public class TPurchaseProduct implements Serializable {
     private String product_code;
     private String product_name;
     private float product_price;
-    private int product_num;
+    private float product_num;
     private String purchase_time;
     private int provider_id;
     private String provider_name;
     private String remark;
     private int if_stock;
-    private int actual_received;
+    private float actual_received;
     private String receiver;
 
     public long getId() {
@@ -46,11 +46,11 @@ public class TPurchaseProduct implements Serializable {
         this.product_name = product_name;
     }
 
-    public int getProduct_num() {
+    public float getProduct_num() {
         return product_num;
     }
 
-    public void setProduct_num(int product_num) {
+    public void setProduct_num(float product_num) {
         this.product_num = product_num;
     }
 
@@ -110,11 +110,11 @@ public class TPurchaseProduct implements Serializable {
         this.remark = remark;
     }
 
-    public int getActual_received() {
+    public float getActual_received() {
         return actual_received;
     }
 
-    public void setActual_received(int actual_received) {
+    public void setActual_received(float actual_received) {
         this.actual_received = actual_received;
     }
 
@@ -135,13 +135,13 @@ public class TPurchaseProduct implements Serializable {
     }
 
     public static class TPurchaseProductVo extends TPurchaseProduct {
-        private int receive_num;
+        private float receive_num;
 
-        public int getReceive_num() {
+        public float getReceive_num() {
             return receive_num;
         }
 
-        public void setReceive_num(int receive_num) {
+        public void setReceive_num(float receive_num) {
             this.receive_num = receive_num;
         }
     }

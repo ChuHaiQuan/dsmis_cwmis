@@ -31,8 +31,8 @@ Ext.define('WJM.sale.SaleForm', {
             }
             },
             {
-                text: "quantity/数量", dataIndex: 'num', sortable: true, xtype: 'numbercolumn', format: '0,000', editor: {
-                xtype: 'numberfield', allowBlank: false, allowDecimals: false
+                text: "quantity/数量", dataIndex: 'num', sortable: true, xtype: 'numbercolumn', format: '0,000.00', editor: {
+                xtype: 'numberfield', allowBlank: false, allowDecimals: true,decimalPrecision:2
             }
             },
             {

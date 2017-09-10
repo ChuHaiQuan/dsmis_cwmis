@@ -298,7 +298,7 @@ public class TPurchaseAction extends BaseDispatchAction {
             Validation.addUserErrorInfo("no such purchase bill!", errors, request);
             return mapping.findForward("info");
         } else {
-            int total_items = 0;
+            float total_items = 0;
             List list = Webservice.listAll(TPurchaseProduct.class, " where purchase_id=" + id, "");
             if (list != null && list.size() > 0) {
                 for (int i = 0; i < list.size(); i++) {

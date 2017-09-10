@@ -49,7 +49,7 @@
 	<field name="product_name" class="java.lang.String"/>
 	<field name="product_price" class="java.lang.Double"/>
 	<field name="agio_price" class="java.lang.Double"/>
-	<field name="product_num" class="java.lang.Integer"/>
+	<field name="product_num" class="java.lang.Float"/>
 	<field name="sale_time" class="java.sql.Timestamp"/>
 	<field name="agio" class="java.lang.Double"/>
 	<field name="rma_id" class="java.lang.Integer"/>
@@ -62,7 +62,7 @@
 		<variableExpression><![CDATA[$F{product_price}]]></variableExpression>
 	</variable>
 	<variable name="AMOUNT" class="java.lang.Double" resetType="Column" incrementType="Column">
-		<variableExpression><![CDATA[new Double($F{product_num}.intValue()*$F{agio_price}.doubleValue())]]></variableExpression>
+		<variableExpression><![CDATA[new Double($F{product_num}.floatValue()*$F{agio_price}.doubleValue())]]></variableExpression>
 	</variable>
 	<background>
 		<band splitType="Prevent"/>
@@ -71,7 +71,7 @@
 		<band splitType="Stretch"/>
 	</title>
 	<pageHeader>
-		<band height="237" splitType="Stretch">
+		<band height="233" splitType="Stretch">
 			<rectangle>
 				<reportElement key="rectangle-7" style="Arial_Normal" x="8" y="126" width="267" height="69" uuid="bb0353d3-2468-4f4e-bb26-33d09a34a818"/>
 			</rectangle>

@@ -131,10 +131,10 @@ Ext.define('WJM.product.ProductForm', {
 						name : 'price_company', fieldLabel : 'company price/公司价格', minValue : 0, xtype : 'adnumberfield', enableKeyEvents : false
 					},
 					{
-						name : 'num', fieldLabel : 'quantity/数量', minValue : 0, xtype : 'numberfield', allowDecimals : false
+						name : 'num', fieldLabel : 'quantity/数量', minValue : 0, xtype : 'numberfield', allowDecimals : true,decimalPrecision:2
 					},
 					{
-						name : 'downLimit', fieldLabel : 'min Stock/最小库存', allowBlank : true, xtype : 'numberfield', allowDecimals : false,
+						name : 'downLimit', fieldLabel : 'min Stock/最小库存', allowBlank : true, xtype : 'numberfield', allowDecimals :true,decimalPrecision:2,
 						minValue : 0
 					}, {
 						name : 'tracking_id', fieldLabel : 'tracking id/库存位置', xtype : 'textareafield', allowBlank : true

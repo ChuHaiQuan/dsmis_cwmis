@@ -304,7 +304,7 @@ public class TProductAction extends BaseDispatchAction {
     			TProduct tProduct = new TProduct(s[1],
     					s[0],s[2],s[3],price_wholesale,price_simgle,
     					(StringUtils.isEmpty(s[6])?0:Float.parseFloat(s[6])),
-    					new Float(quantity).intValue(),downLimit,s[10],s[9]);
+    					new Float(quantity),downLimit,s[10],s[9]);
     			Webservice.insert(tProduct);
     			//遍历数据,保存
     		}
