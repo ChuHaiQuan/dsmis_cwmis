@@ -467,6 +467,8 @@ Ext.define('WJM.sale.SaleGrid', {
 		var selection = this.down('grid[title="订单"]').getView().getSelectionModel().getSelection()[0];
 		if (selection) {
 			var des = myDesktopApp.getDesktop();
+			selection.data.buyer_address_1=selection.data.buyer_address=selection.data.buyer_address+","+selection.data.buyer_city+" "+selection.data.buyer_state+" "+selection.data.buyer_postCode;
+			selection.data.buyer_mobile_1 = selection.data.buyer_mobile;
 			var form = Ext.create('WJM.sale.SaleDetailInfo', {
 				record : selection
 			});

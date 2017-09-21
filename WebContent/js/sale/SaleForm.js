@@ -149,7 +149,7 @@ Ext.define('WJM.sale.SaleForm', {
 //                            				if (records.success) {
                             					recod.set('agio_price', recod.get('old_price_company'));
                             					recod.set('agio_price_old', recod.get('old_price_company'));
-                            					this.getForm().findField('confirm_code').setValue(text);
+                            					//this.getForm().findField('confirm_code').setValue(text);
 //                            				} else {
 //                            					Ext.Msg.alert('提示', records.error);
 //                            				}
@@ -487,6 +487,7 @@ Ext.define('WJM.sale.SaleForm', {
      * @param customer
      */
     setCustomer: function (customer) {
+    	debugger;
         this.customer = customer;
         this.getForm().findField('buyer_name').setValue(customer.get('shortName'));
         this.getForm().findField('buyer_address').setValue(customer.get('address'));
@@ -501,6 +502,10 @@ Ext.define('WJM.sale.SaleForm', {
         
         //如果客户的不交税的，就需要默认设置客户不交税，需要在订单表里面加一个是否交税的字段来判断
         this.getForm().findField("taxable").setValue(customer.get("taxable"));
+        if(customer.get("taxable") == 1){
+        	this.getForm().findField('discountpercent').setValue(8.875);
+        	this.calculateTotal();
+        }
     },
     /**
      * 保存
@@ -917,6 +922,7 @@ Ext.define('WJM.sale.SaleForm', {
     
     //使用公司价格
     onUseCompany:function(){
+    	var that=this;
     	var selection = this.down('grid[title="订单商品"]').getView().getSelectionModel().getSelection();
     	if(selection.length==0){
     		Ext.MessageBox.show({

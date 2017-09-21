@@ -21,7 +21,6 @@ Ext.define('WJM.sale.SaleDetailInfo', {
 	record:null,
 
 	initComponent : function() {
-		debugger;
 		var me = this;
 		var _fileds = [ {
 			xtype : 'rownumberer'
@@ -30,11 +29,11 @@ Ext.define('WJM.sale.SaleDetailInfo', {
 		}, {
 			text : "Product Name/产品名称", dataIndex : 'product_name', sortable : true,width:200
 		}, {
-			text : "QTY./数量", dataIndex : 'product_num', sortable : true, xtype : 'numbercolumn', format : '$0.00'
+			text : "QTY./数量", dataIndex : 'product_num', sortable : true, xtype : 'numbercolumn', format : '0.00'
 		}, {
-			text : "UNIT PRICE/单价", dataIndex : 'agio_price', sortable : true
+			text : "UNIT PRICE/单价", dataIndex : 'agio_price', sortable : true, format : '0.00', xtype : 'numbercolumn'
 		}, {
-			text : "AMOUNT/总价", dataIndex : 'sub_total2', sortable : true, xtype : 'numbercolumn'
+			text : "AMOUNT/总价", dataIndex : 'sub_total2', sortable : true, xtype : 'numbercolumn', format : '0.00'
 		}/*, {
 			text : "RMAed credit quantity/已退货无损数量", dataIndex : 'credit_num', sortable : true, xtype : 'numbercolumn'
 		}, {
@@ -72,15 +71,15 @@ Ext.define('WJM.sale.SaleDetailInfo', {
 									collapsed : this.collapsedStatistics, defaults : {
 										xtype : 'textfield', anchor : '100%', labelWidth : 100, bodyPadding : 10
 									}, items : [{
-										fieldLabel : 'buyer_address', name : 'buyer_mobile', readOnly : true
+										fieldLabel : 'buyer_address', name : 'buyer_address_1', readOnly : true
 									}, {
-										fieldLabel : 'buyer_city', name : 'buyer_name', readOnly : true
+										fieldLabel : 'buyer_city', name : 'buyer_city', readOnly : true
 									}, {
 										fieldLabel : 'buyer_state', name : 'buyer_state', readOnly : true
 									}, {
 										fieldLabel : 'buyer_postCode', name : 'buyer_postCode', readOnly : true
 									}, {
-										fieldLabel : 'buyer_mobile', name : 'buyer_address', readOnly : true
+										fieldLabel : 'buyer_mobile', name : 'buyer_mobile_1', readOnly : true
 									} ]
 								} ]
 					},
@@ -106,15 +105,15 @@ Ext.define('WJM.sale.SaleDetailInfo', {
 									collapsed : this.collapsedStatistics, defaults : {
 										xtype : 'textfield', anchor : '100%', labelWidth : 120, bodyPadding : 10
 									}, items : [ {
-										fieldLabel : 'Sub Total/总计:', name : 'sub_total', readOnly : true
+										fieldLabel : 'Sub Total/总计:', name : 'sub_total', readOnly : true,xtype: 'numberfield'
 									}, {
-										fieldLabel : 'Tax/税:', name : 'tax', readOnly : true
+										fieldLabel : 'Tax/税:', name : 'tax', readOnly : true,xtype: 'numberfield'
 									}, {
-										fieldLabel : 'Total/总价:', name : 'total', readOnly : true
+										fieldLabel : 'Total/总价:', name : 'total', readOnly : true,xtype: 'numberfield'
 									}, {
-										fieldLabel : 'Discount/优惠:', name : 'discount', readOnly : true
+										fieldLabel : 'Discount/优惠:', name : 'discount', readOnly : true,xtype: 'numberfield'
 									}, {
-										fieldLabel : 'Balance/差额:', name : 'balance', readOnly : true
+										fieldLabel : 'Balance/差额:', name : 'balance', readOnly : true,xtype: 'numberfield'
 									}, {
 										fieldLabel : 'Account Balance/帐号余额:', name : 'buyer_balance', readOnly : true
 									}  ]
