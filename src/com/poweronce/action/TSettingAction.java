@@ -50,6 +50,33 @@ public class TSettingAction extends BaseDispatchAction {
         return null;
     }
 
+    /**
+     * 清空数据库
+     * @param mapping
+     * @param form
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    public ActionForward cleandatabase(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+    	String backup_path = this.getServlet().getServletContext().getRealPath("/")+"cleandb.sql";
+    	File file = new File(backup_path);
+    	if(!file.isDirectory()){
+    		file.mkdirs();
+    	}
+        ClassLoader loader = getClass().getClassLoader();
+        Properties props = new Properties();
+        props.load(loader.getResourceAsStream("connection.properties"));
+        String user = props.getProperty("oraclePoolName.userName");
+        String psw = props.getProperty("oraclePoolName.password");
+        String cmd = "mysql.exe -u" + user + " -p" + psw + " stmis < " + backup_path;
+        Process process = Runtime.getRuntime().exec( "cmd /k " +cmd);
+        System.out.println(process.hashCode());
+        log.error("cmd /c " + cmd);
+		return null;
+    }
     
     
     public ActionForward backupdatabase(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
@@ -66,7 +93,7 @@ public class TSettingAction extends BaseDispatchAction {
         String user = props.getProperty("oraclePoolName.userName");
         String psw = props.getProperty("oraclePoolName.password");
         String bkf = backup_path +filePath+sqlFileName+".sql";
-        String cmd = "mysqldump.exe -u " + user + " -p" + psw + " --opt cwmis > " + bkf;
+        String cmd = "mysqldump.exe -u" + user + " -p" + psw + " --opt stmis > " + bkf;
         Process process = Runtime.getRuntime().exec("cmd /c " + cmd);
         log.error("cmd /c " + cmd);
         try {
@@ -108,7 +135,7 @@ public class TSettingAction extends BaseDispatchAction {
             // 数据库导入
             String path = "mysqladmin.exe -u" + user + " -p" + psw + " create cwmis";
             java.lang.Runtime.getRuntime().exec("cmd /c " + path);
-            path = "mysql.exe -u" + user + " -p" + psw + " cwmis < " + uploadpath + filename;
+            path = "mysql.exe -u" + user + " -p" + psw + " stmis < " + uploadpath + filename;
             java.lang.Runtime.getRuntime().exec("cmd /c " + path);
 
             Validation.addUserErrorInfo("restore success!", errors, request);

@@ -145,6 +145,8 @@ Ext.define('WJM.sale.SaleGrid', {
 		}, {
 			text : "tax/税", dataIndex : 'tax', sortable : true, xtype : 'numbercolumn', format : '$0.00'
 		}, {
+			text : "delivery_fee/送货费", dataIndex : 'delivery_fee', sortable : true, xtype : 'numbercolumn', format : '$0.00'
+		}, {
 			text : "total/合计", dataIndex : 'all_price', sortable : true, xtype : 'numbercolumn', format : '$0.00'
 		}, {
 			text : "state/状态", dataIndex : 'if_cashedStr', sortable : true

@@ -666,7 +666,7 @@ public class TSaleAction extends BaseDispatchAction {
                     .put("subtotal", String.valueOf(new Double(ObjectFormat.formatCurrency(sale.getSub_total(), "##0.00")).doubleValue()));
             parameters.put("tax", String.valueOf(new Double(ObjectFormat.formatCurrency(sale.getTax(), "##0.00")).doubleValue()));
             parameters.put("total",
-                    String.valueOf(new Double(ObjectFormat.formatCurrency(sale.getSub_total() + sale.getTax(), "##0.00")).doubleValue()));
+                    String.valueOf(new Double(ObjectFormat.formatCurrency(sale.getSub_total() + sale.getTax()+ sale.getDelivery_fee(), "##0.00")).doubleValue()));
             double deposit = new Double(ObjectFormat.formatCurrency(sale.getDiscount(), "##0.00")).doubleValue();
             parameters.put("deposite", String.valueOf(deposit==0?0:-deposit));
             parameters.put("balance", String.valueOf(new Double(ObjectFormat.formatCurrency(sale.getAll_price() - sale.getPaid_price(),
@@ -733,7 +733,7 @@ public class TSaleAction extends BaseDispatchAction {
                     .put("subtotal", String.valueOf(new Double(ObjectFormat.formatCurrency(sale.getSub_total(), "###.00")).doubleValue()));
             parameters.put("tax", String.valueOf(new Double(ObjectFormat.formatCurrency(sale.getTax(), "###.00")).doubleValue()));
             parameters.put("total",
-                    String.valueOf(new Double(ObjectFormat.formatCurrency(sale.getSub_total() + sale.getTax(), "###.00")).doubleValue()));
+                    String.valueOf(new Double(ObjectFormat.formatCurrency(sale.getSub_total() + sale.getTax()+sale.getDelivery_fee(), "###.00")).doubleValue()));
             parameters.put("deposite", String.valueOf(new Double(ObjectFormat.formatCurrency(sale.getDiscount(), "###.00")).doubleValue()));
             parameters.put("balance", String.valueOf(new Double(ObjectFormat.formatCurrency(sale.getAll_price() - sale.getPaid_price(),
                     "###.00")).doubleValue()));

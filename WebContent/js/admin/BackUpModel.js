@@ -85,11 +85,30 @@ Ext.define('WJM.admin.BackUpModel', {
 							}
 					    }]
 			});
+			
+			var grid4 = Ext.create('Ext.panel.Panel', {
+				title : '清空数据库',
+				layout : {
+					type : 'vbox', // Arrange child items vertically
+					align : 'center', // Each takes up full width
+					padding : 10
+				},
+				items : [
+						{
+							xtype : 'label', html : '<span style="font-size: 20px;color: red;">数据库清空后无法恢复，请谨慎操作!!</span>'
+						},
+						{
+							xtype : 'button', text : '<span style="font-size: 20px;">Clean Database</span>', scale : 'large', margin : '30 0 0 0', scope : this,
+							handler : this.onCleanDbClick
+						} ]
+			});
+			
+			
 			var grid2 = Ext.create('WJM.admin.CompanyForm');
 			win = desktop.createWindow({
 				id : this.id, title : this.title, width : 400, height : 400, iconCls : 'icon-grid', animCollapse : false, constrainHeader : true,
 				layout : 'fit', items : {
-					xtype : 'tabpanel', items : [ grid2, grid,grid3 ]
+					xtype : 'tabpanel', items : [ grid2, grid,grid3,grid4 ]
 				}
 			});
 		}
@@ -122,6 +141,28 @@ Ext.define('WJM.admin.BackUpModel', {
 			var win = desktop.getWindow(this.id);
 			win.destroy();
 		}, me);
+	},
+	/**
+	 * 清空数据库
+	 */
+	onCleanDbClick : function() {
+		var me = this;
+		Ext.Msg.confirm('提示', '确定要清空数据库吗？', function(btn, text) {
+			if (btn == 'yes') {
+				var proxy = new Ext.data.proxy.Ajax({
+					url : 'setting.do?action=cleandatabase', reader : new Ext.data.reader.Json({
+						type : 'json', messageProperty : 'msg', model : 'WJM.model.TPurchase'
+					}),
+
+					writer : Ext.create('WJM.FormWriter')
+				});
+				proxy.read(new Ext.data.Operation({}), function(op) {
+					Ext.Msg.alert('提示', '清空成功,请刷新页面!');
+					location.reload(true);
+				}, me);
+			}
+		}, this);
+		
 	}
 
 });

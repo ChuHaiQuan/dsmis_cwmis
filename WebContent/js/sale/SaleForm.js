@@ -321,8 +321,9 @@ Ext.define('WJM.sale.SaleForm', {
                         {
                             xtype: 'button', anchor: '100%', text: 'No discount(With All Tax)/不优惠(含所有税)', listeners: {
                             click: function () {
-                                this.getForm().findField('discount').setValue(0);
-                                this.getForm().findField('discountpercent').setValue(0);
+                            	this.getForm().findField("taxable").setValue(2);
+                                //this.getForm().findField('discount').setValue(0);
+                                //this.getForm().findField('discountpercent').setValue(0);
                                 me.discountPercentChange();
                             }, scope: me
                         }
@@ -330,10 +331,11 @@ Ext.define('WJM.sale.SaleForm', {
                         {
                             xtype: 'button', anchor: '100%', text: 'No tax/不交税', listeners: {
                             click: function () {
+                            	this.getForm().findField("taxable").setValue(1);
                                 var tax = this.getForm().findField('tax').getValue();
                                 var sub_total = this.getForm().findField('sub_total').getValue();
-                                this.getForm().findField('discount').setValue(tax);
-                                this.getForm().findField('discountpercent').setValue(tax / sub_total * 100);
+                               // this.getForm().findField('discount').setValue(tax);
+                               // this.getForm().findField('discountpercent').setValue(tax / sub_total * 100);
                                 me.discountPercentChange();
                             }, scope: me
                         }
@@ -395,7 +397,7 @@ Ext.define('WJM.sale.SaleForm', {
                             allowBlank: false, readOnly: true, value: window.user.userName
                         },
                         {
-                            xtype: 'textfield', name: 'oper_time', fieldLabel: 'date/时间', width: '90%', labelWidth: 110, allowBlank: false,
+                            xtype: 'textfield', name: 'oper_time', fieldLabel: 'date/时间', width: '90%', labelWidth: 120, allowBlank: false,
                             readOnly: true, value: Ext.Date.format(new Date(), 'Y-m-d H:i:s')
                         },
                         {
@@ -403,12 +405,20 @@ Ext.define('WJM.sale.SaleForm', {
                             xtype: 'adnumberfield'
                         },
                         {
-                            name: 'tax', fieldLabel: 'Tax/税(' + (window.invoiceTax * 100).toFixed(3) + '%)', allowBlank: false, labelWidth: 110,
+                            name: 'tax', fieldLabel: 'Tax/税(' + (window.invoiceTax * 100).toFixed(3) + '%)', allowBlank: false, labelWidth: 120,
                             width: '90%', readOnly: true, xtype: 'adnumberfield'
                         },
                         {
                             name: 'all_price', fieldLabel: 'Total/总计', allowBlank: false, labelWidth: 110, width: '90%', readOnly: true,
                             xtype: 'adnumberfield'
+                        },
+                        {
+                            name: 'delivery_fee', fieldLabel: 'Delivery Fee/送货费', allowBlank: false, labelWidth: 120,
+                            width: '90%', readOnly: false, xtype: 'adnumberfield', listeners : { 
+                                'change' : function(field,newValue,oldValue){ 
+                                	me.calculateTotal(true);
+                              } , scope: me
+                         } 
                         }
                     ]
                 },
@@ -487,7 +497,6 @@ Ext.define('WJM.sale.SaleForm', {
      * @param customer
      */
     setCustomer: function (customer) {
-    	debugger;
         this.customer = customer;
         this.getForm().findField('buyer_name').setValue(customer.get('shortName'));
         this.getForm().findField('buyer_address').setValue(customer.get('address'));
@@ -503,8 +512,8 @@ Ext.define('WJM.sale.SaleForm', {
         //如果客户的不交税的，就需要默认设置客户不交税，需要在订单表里面加一个是否交税的字段来判断
         this.getForm().findField("taxable").setValue(customer.get("taxable"));
         if(customer.get("taxable") == 1){
-        	this.getForm().findField('discountpercent').setValue(8.875);
-        	this.calculateTotal();
+        	//this.getForm().findField('discountpercent').setValue(8.875);
+        	//this.calculateTotal();
         }
     },
     /**
@@ -657,6 +666,7 @@ Ext.define('WJM.sale.SaleForm', {
     	var that=this;
         var total = 0;
         var datas = this.down('gridpanel').getStore().data;
+        debugger;
         datas.each(function (item) {
         	if(single){
         		if(item == single){
@@ -707,12 +717,22 @@ Ext.define('WJM.sale.SaleForm', {
             total += item.get('total');
         });
         var discountpercent = Number(this.getForm().findField('discountpercent').getValue()) / 100;
-        this.getForm().findField('tax').setValue(total * window.invoiceTax);
         this.getForm().findField('sub_total').setValue(total - total * discountpercent);
         this.getForm().findField('discount').setValue(total * discountpercent);
-        debugger;
-        this.getForm().findField('all_price').setValue(
-            total * (1 + window.invoiceTax - discountpercent));
+        if(this.getForm().findField("taxable").getValue() == 1){
+        	this.getForm().findField('tax').setValue(0);
+        	this.getForm().findField('all_price').setValue(total - total * discountpercent);
+        }else{
+        	this.getForm().findField('tax').setValue(total * window.invoiceTax);
+        	this.getForm().findField('all_price').setValue(
+                    total * (1 + window.invoiceTax - discountpercent));
+        };
+        var all_price = this.getForm().findField('all_price').getValue();
+        var delivery_fee = this.getForm().findField('delivery_fee').getValue();
+        this.getForm().findField('all_price').setValue(all_price+(delivery_fee || 0));
+        
+       
+        
     },
     /**
      * 重置表单

@@ -115,7 +115,11 @@ Ext.define('WJM.model.TSale', {
 		name : 'company_logo_pic_logo'
 	}, {
 		name : 'invoiceTax'
-	}  ],
+	} , {
+		name : 'delivery_fee'
+	} , {
+		name : 'taxable'
+	} ],
 
 	hasMany : {
 		model : 'WJM.model.TSaleProduct', name : 'products'

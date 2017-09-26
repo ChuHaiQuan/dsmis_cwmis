@@ -80,7 +80,18 @@ public class TSaleForm extends BasePageForm {
     private int rma_status;
     
     
+    private float delivery_fee;
     
+    
+    
+    
+    public float getDelivery_fee() {
+		return delivery_fee;
+	}
+
+	public void setDelivery_fee(float delivery_fee) {
+		this.delivery_fee = delivery_fee;
+	}
     
 	public int getRma_status() {
 		return rma_status;

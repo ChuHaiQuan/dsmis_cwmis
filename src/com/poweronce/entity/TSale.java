@@ -63,9 +63,20 @@ public class TSale implements Serializable {
     private float invoiceTax;
 
     private int type;
+    private float delivery_fee;
     
     
-    public int getRma_status() {
+    
+    
+    public float getDelivery_fee() {
+		return delivery_fee;
+	}
+
+	public void setDelivery_fee(float delivery_fee) {
+		this.delivery_fee = delivery_fee;
+	}
+
+	public int getRma_status() {
 		return rma_status;
 	}
 
