@@ -303,6 +303,8 @@ Ext.create('Ext.data.Store', {
 	fields : [ 'value', 'name' ], storeId : 'SalePaymentMethodStore', data : [ {
 		"value" : "Cash", "name" : "Cash/现金"
 	}, {
+		"value" : "Check", "name" : "Check/支票"
+	}, {
 		"value" : "Credit Card", "name" : "Credit Card/信用卡"
 	}, {
 		"value" : "Credit Account", "name" : "Credit Account/会员"

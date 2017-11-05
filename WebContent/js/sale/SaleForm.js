@@ -41,20 +41,22 @@ Ext.define('WJM.sale.SaleForm', {
             }
             },
             {
-                text: "discount price/折扣价", dataIndex: 'agio_price', sortable: true, xtype: 'numbercolumn', format: '$0.00'
-            },
+                text: "discount price/折扣价", dataIndex: 'agio_price', sortable: true, xtype: 'numbercolumn', format: '$0.00', editor: {
+                    xtype: 'adnumberfield', allowBlank: false
+                }
+            },/*
             {
                 text: "discount percent/折扣百分比", dataIndex: 'agio', sortable: true, xtype: 'numbercolumn', format: '0.0%', editor: {
                 xtype: 'adnumberfield', allowBlank: false
             }
-            },
+            },*/
             {
                 text: "sub total/小计", dataIndex: 'total', sortable: true, xtype: 'numbercolumn', format: '$0.00'
             }
         ];
 
        // if (!this.record) {
-            _fileds.push({
+/*            _fileds.push({
                 xtype: 'actioncolumn',
                 text: "使用批发价",
                 align: 'center',
@@ -167,7 +169,7 @@ Ext.define('WJM.sale.SaleForm', {
                         }, scope: this
                     }
                 ]
-            });
+            });*/
         //}
         this.editor = Ext.create('Ext.grid.plugin.CellEditing', {
             clicksToEdit: 1, listeners: {
@@ -450,7 +452,7 @@ Ext.define('WJM.sale.SaleForm', {
                     },
                     {
                         xtype: 'button', iconCls: 'add', text: '添加临时产品', scope: this, handler: this.onAddProductClick
-                    },
+                    }/*,
                     {
                         xtype: 'button', iconCls: 'add', text: '使用批发价', scope: this, handler: this.onUseCheap
                     },
@@ -459,7 +461,7 @@ Ext.define('WJM.sale.SaleForm', {
                     },
                     {
                         xtype: 'button', iconCls: 'add', text: '使用公司价格', scope: this, handler: this.onUseCompany
-                    }
+                    }*/
                 ]
                 }
             ]
@@ -645,6 +647,7 @@ Ext.define('WJM.sale.SaleForm', {
     	var data = arguments[1];
     	var id = arguments[1].record;
     	var that = this;
+    	var agioPrice = arguments[1].record.data.agio_price;
     	if(arguments[1].field == 'agio'){
         	this.adminConfirm(function(){
         		that.calculateTotal(null,id);
@@ -655,6 +658,16 @@ Ext.define('WJM.sale.SaleForm', {
         		data.record.set("agio",bfAgio);
         		that.calculateTotal(null,id);
         	});
+    	}if(arguments[1].field == 'agio_price' && arguments[1].record.data.price_wholesale>agioPrice){
+    			this.adminConfirm(function(){
+            		that.calculateTotal(null,id);
+            	},function(){
+            		data.record.set("agio_price",bfAgioPrice);
+            		that.calculateTotal(null,id);
+            	},function(){
+            		data.record.set("agio_price",bfAgioPrice);
+            		that.calculateTotal(null,id);
+            	});
     	}else{
     		that.calculateTotal(true,id);
     	}
@@ -675,18 +688,18 @@ Ext.define('WJM.sale.SaleForm', {
                 		if(!item.get("agio_price")){item.set('agio_price_old', agio_price);}
                         item.set('agio_price', agio_price);
                 	}else{
-                		if(!flag){
-                			if(item.get('agio_price_old')){
-                				var agio_price = Ext.util.Format.number(item.get('agio_price_old') * (1 - item.get('agio') / 100), '0.00');
-                				item.set('agio_price', agio_price);	
-                			}else{
-                				var price=item.get('agio_price')/(1-item.get("agio")/100);
-                				if(Math.abs(item.get("price_simgle")-price)<1)
-                					item.set('agio_price_old',item.get("price_simgle") );
-                				else
-                					item.set('agio_price_old',item.get("price_wholesale") );
-                			}
-                		}
+//                		if(!flag){
+//                			if(item.get('agio_price_old')){
+//                				var agio_price = Ext.util.Format.number(item.get('agio_price_old') * (1 - item.get('agio') / 100), '0.00');
+//                				item.set('agio_price', agio_price);	
+//                			}else{
+//                				var price=item.get('agio_price')/(1-item.get("agio")/100);
+//                				if(Math.abs(item.get("price_simgle")-price)<1)
+//                					item.set('agio_price_old',item.get("price_simgle") );
+//                				else
+//                					item.set('agio_price_old',item.get("price_wholesale") );
+//                			}
+//                		}
                 	}
         		}
         	}else{
@@ -696,17 +709,16 @@ Ext.define('WJM.sale.SaleForm', {
                 		if(!item.get("agio_price")){item.set('agio_price_old', agio_price);}
                         item.set('agio_price', agio_price);
                 	}else{
-                		
-                			if(item.get('agio_price_old')){
-                				var agio_price = Ext.util.Format.number(item.get('agio_price_old') * (1 - item.get('agio') / 100), '0.00');
-                				item.set('agio_price', agio_price);	
-                			}else{
-                				var price=item.get('agio_price')/(1-item.get("agio")/100);
-                				if(Math.abs(item.get("price_simgle")-price)<1)
-                					item.set('agio_price_old',item.get("price_simgle") );
-                				else
-                					item.set('agio_price_old',item.get("price_wholesale") );
-                			}
+//                			if(item.get('agio_price_old')){
+//                				var agio_price = Ext.util.Format.number(item.get('agio_price_old') * (1 - item.get('agio') / 100), '0.00');
+//                				item.set('agio_price', agio_price);	
+//                			}else{
+//                				var price=item.get('agio_price')/(1-item.get("agio")/100);
+//                				if(Math.abs(item.get("price_simgle")-price)<1)
+//                					item.set('agio_price_old',item.get("price_simgle") );
+//                				else
+//                					item.set('agio_price_old',item.get("price_wholesale") );
+//                			}
                 		
                 	}
         		}
@@ -1022,6 +1034,7 @@ Ext.define('WJM.sale.SaleForm', {
     },
     
     adminConfirm:function(callback,errorCallback,cancelFn){
+    	debugger;
     	var messageBox = Ext.Msg.prompt('approver', '请输入管理员确认码', function (btn, text) {
             if (btn == 'ok') {
             	var proxy = new Ext.data.proxy.Ajax({
@@ -1118,6 +1131,9 @@ Ext.define('WJM.sale.SaleForm', {
     onBeforeEdit: function (editor, data, eOpts) {
     	if(arguments[1].field == 'agio'){
         	bfAgio = data.record.data.agio;
+    		return doEdit();
+    	}if(arguments[1].field == 'agio_price'){
+        	bfAgioPrice = data.record.data.agio_price;
     		return doEdit();
     	}else{
     		return doEdit();

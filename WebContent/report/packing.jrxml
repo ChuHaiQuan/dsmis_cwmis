@@ -4,7 +4,7 @@
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="194"/>
+	<property name="ireport.y" value="0"/>
 	<property name="ireport.layers" value="##Sun Jun 18 22:38:36 CST 2017\nlayer.1.name=Layer 1\nlayer.1.visible=true\nlayer.1.id=1\nlayer.0.name=Background\nlayer.0.visible=true\nlayer.0.id=0"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
@@ -362,13 +362,16 @@
 				<textFieldExpression><![CDATA[$P{buyer_address}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report" isBlankWhenNull="true">
-				<reportElement key="textField-11" x="321" y="190" width="170" height="18" isRemoveLineWhenBlank="true" uuid="683a2683-475f-4c92-9be6-17569ad6c43b"/>
+				<reportElement key="textField-11" x="460" y="156" width="110" height="18" isRemoveLineWhenBlank="true" uuid="683a2683-475f-4c92-9be6-17569ad6c43b"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
+				<textElement>
+					<font pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{buyer_mobile}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report" isBlankWhenNull="true">
@@ -379,6 +382,9 @@
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
+				<textElement>
+					<font pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{buyer_state}]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -404,17 +410,20 @@
 				<text><![CDATA[Ship To:]]></text>
 			</staticText>
 			<textField evaluationTime="Report" isBlankWhenNull="true">
-				<reportElement key="textField-21" x="22" y="156" width="99" height="18" isRemoveLineWhenBlank="true" uuid="47ab7518-a59c-4c6c-853b-4faccb6a3122"/>
+				<reportElement key="textField-21" x="152" y="156" width="111" height="18" isRemoveLineWhenBlank="true" uuid="47ab7518-a59c-4c6c-853b-4faccb6a3122"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
+				<textElement>
+					<font pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{buyer_mobile}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement key="textField-7" x="140" y="158" width="99" height="16" uuid="93fc7011-1673-4c98-a912-42952c160e96"/>
+				<reportElement key="textField-7" x="25" y="156" width="111" height="16" uuid="93fc7011-1673-4c98-a912-42952c160e96"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -440,7 +449,7 @@
 				<textFieldExpression><![CDATA[$P{buyer_city}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report" isBlankWhenNull="true">
-				<reportElement key="textField-8" x="321" y="156" width="249" height="18" isRemoveLineWhenBlank="true" uuid="b9d5cd60-1cfc-416b-add6-70373439ca0d"/>
+				<reportElement key="textField-8" x="321" y="156" width="130" height="18" isRemoveLineWhenBlank="true" uuid="b9d5cd60-1cfc-416b-add6-70373439ca0d"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -602,6 +611,9 @@
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
+				<textElement>
+					<font pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{buyer_state}]]></textFieldExpression>
 			</textField>
 		</band>
